@@ -18,19 +18,7 @@ const MainComponent = () => {
   };
 
   return (
-    // <div className="py-10 px-4 sm:px-6 lg:px-8">
-    //   <h2 className="text-2xl font-bold mb-4">Popular School Comparison</h2>
-    //   <p className=" text-gray-600 mb-8">
-    //     Find out the school that suits you best before buying your form.
-    //   </p>
-
-    //   {/* Reduced gap between cards */}
-    //   <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-    //     <ComparisonCard university1={university1} university2={university2} />
-    //     <ComparisonCard university1={university1} university2={university2} />
-    //     <ComparisonCard university1={university1} university2={university2} />
-    //   </div>
-    // </div>
+   
 
     <div className="py-10 px-2 sm:px-2 lg:px-2">
       <div className="flex justify-center">

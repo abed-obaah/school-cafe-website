@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { AiOutlineUser } from 'react-icons/ai'; // Example icon, replace with the desired one
+import { AiOutlineUser, } from 'react-icons/ai'; // Example icon, replace with the desired one
 
 export default function SearchBar() {
   return (

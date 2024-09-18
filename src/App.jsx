@@ -8,6 +8,12 @@ import ToolsSection from './components/ToolsSection';
 import FeaturedSchool from './components/FeaturedSchool';
 import LatestSchool from './components/LatestSchool'
 import CardCompare from './components/CardCompare'
+import Badges from './components/Badges';
+import QuestionInput from './components/questionsInput';
+import Testimonails from './components/Testimonials'
+import FAQ from './components/Faq';
+import AppDownloadSection from './components/AppDownloadSection';
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -20,6 +26,12 @@ function App() {
       <FeaturedSchool />
       <LatestSchool />
       <CardCompare/>
+      <Badges/>
+      <QuestionInput/>
+      <Testimonails/>
+      <FAQ/>
+      <AppDownloadSection/>
+      <Footer/>
     </div>
   );
 }

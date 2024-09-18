@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaStar, FaRegStar } from 'react-icons/fa'; // FontAwesome icons for stars
-import { EyeIcon, ShareIcon } from '@heroicons/react/24/outline'; // Import ShareIcon
+import { EyeIcon, ShareIcon, } from '@heroicons/react/24/outline'; // Import ShareIcon
 
 const Card = ({ imageSrc, title, details, featured, views, rating, location }) => {
   return (
