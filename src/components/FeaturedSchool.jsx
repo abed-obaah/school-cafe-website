@@ -33,7 +33,6 @@ const AnotherComponent = () => {
       rating: 3,
       location: 'Los Angeles, CA'
     },
-    // Add more card data objects as needed
   ];
 
   return (

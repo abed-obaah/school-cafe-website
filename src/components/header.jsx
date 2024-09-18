@@ -62,7 +62,7 @@ export default function Example() {
               <span className="sr-only">Your Company</span>
               <img alt="" src={Logo} className="h-8 w-auto" />
             </a>
-            <button className="mt-4 sm:mt-0 bg-blue-500 text-white px-4 py-2 rounded">Contact Us</button>
+            {/* <button className="mt-4 sm:mt-0 bg-blue-500 text-white px-4 py-2 rounded">Contact Us</button> */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}

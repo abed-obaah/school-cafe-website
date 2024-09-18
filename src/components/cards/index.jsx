@@ -4,7 +4,7 @@ import { EyeIcon, ShareIcon } from '@heroicons/react/24/outline'; // Import Shar
 
 const Card = ({ imageSrc, title, details, featured, views, rating, location }) => {
   return (
-    <div className="relative flex flex-col overflow-hidden rounded-lg shadow-lg bg-white max-w-lg w-full mx-auto">
+    <div className="relative flex flex-col overflow-hidden rounded-lg border bg-white max-w-lg w-full mx-auto">
       <div className="relative w-full h-64">
         <div
           className="absolute inset-0 bg-cover bg-center rounded-t-lg"
