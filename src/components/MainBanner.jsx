@@ -2,6 +2,16 @@ import React from 'react';
 import jamb from '../assets/jamb.png';
 import copper from '../assets/copper.png';
 import boy from '../assets/boy.png';
+import NewsSection from './NewsSection';
+import ToolsSection from './ToolsSection';
+import FeaturedSchool from './FeaturedSchool';
+import LatestSchool from './LatestSchool'
+import CardCompare from './CardCompare'
+import Badges from './Badges';
+import QuestionInput from './questionsInput';
+import Testimonails from './Testimonials'
+import FAQ from './Faq';
+import AppDownloadSection from './AppDownloadSection';
 
 export default function MainBanner() {
   return (
@@ -67,6 +77,16 @@ export default function MainBanner() {
             </div>
           </div>
         </div>
+        <NewsSection />
+      <ToolsSection />
+      <FeaturedSchool />
+      <LatestSchool />
+      <CardCompare/>
+      <Badges/>
+      <QuestionInput/>
+      <Testimonails/>
+      <FAQ/>
+      {/* <AppDownloadSection/> */}
       </div>
     </div>
   );

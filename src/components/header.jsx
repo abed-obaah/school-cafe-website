@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon,ChevronDownIcon } from '@heroicons/react/24/outline';
 import Logo from '../assets/snLogo.png';
+import { Link } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Home', href: '#home' },
+  { name: 'Home', href: '#' },
   { name: 'Student News', href: '#students' },
   { name: 'NYSC News', href: '#nysc' },
   { name: 'Others', href: '#others' },
-  { name: 'About Us', href: '#about' },
+  { name: 'About Us', href: '/about' },
 ];
 
 export default function Example() {
@@ -41,7 +42,12 @@ export default function Example() {
           ))}
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6">
-        <button className="mt-4 sm:mt-0 bg-blue-500 text-white px-4 py-2 rounded">Contact Us</button>
+        <Link
+                to="/contact"
+                className="mt-4 sm:mt-0 bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                Contact Us
+        </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -89,7 +95,13 @@ export default function Example() {
                 ))}
               </div>
               <div className="py-6">
-              <button className="mt-4 sm:mt-0 bg-blue-500 text-white px-4 py-2 rounded">Contact Us</button>
+              <Link
+                to="/contact"
+                className="mt-4 sm:mt-0 bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                Contact Us
+              </Link>
+
               </div>
             </div>
           </div>

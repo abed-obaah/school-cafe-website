@@ -1,39 +1,42 @@
 // src/App.js
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/header';
 import SearchBar from './components/SearchBar';
 import MainBanner from './components/MainBanner';
-import NewsSection from './components/NewsSection';
-import ToolsSection from './components/ToolsSection';
-import FeaturedSchool from './components/FeaturedSchool';
-import LatestSchool from './components/LatestSchool'
-import CardCompare from './components/CardCompare'
-import Badges from './components/Badges';
-import QuestionInput from './components/questionsInput';
-import Testimonails from './components/Testimonials'
-import FAQ from './components/Faq';
+import ContactSection from './components/Pages/ContactSection';
+import Footer from './components/Footer';
 import AppDownloadSection from './components/AppDownloadSection';
-import Footer from './components/Footer'
+import About from './components/Pages/about';
 
 function App() {
+  const location = useLocation();  // Hook to get the current route
+
+  // List of routes where SearchBar should be displayed
+  const showSearchBarRoutes = ['/']; 
+
   return (
     <div>
       <Header />
-      <SearchBar />
-      <MainBanner />
-      <NewsSection />
-      <ToolsSection />
-      <FeaturedSchool />
-      <LatestSchool />
-      <CardCompare/>
-      <Badges/>
-      <QuestionInput/>
-      <Testimonails/>
-      <FAQ/>
+
+      {/* Conditionally render SearchBar based on the current route */}
+      {showSearchBarRoutes.includes(location.pathname) && <SearchBar />}
+
+      <Routes>
+        <Route path="/" element={<MainBanner />} />
+        <Route path="/contact" element={<ContactSection />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
       <AppDownloadSection/>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
