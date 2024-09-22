@@ -28,6 +28,7 @@ const navigation = {
     { name: 'Linkdin', href: 'https://www.linkedin.com/company/schoolcafeng', },
     { name: 'Youtube', href: 'https://www.youtube.com/channel/UC7PVUxasNCk0bz4ReYTdw4g' },
     { name: 'Linkin', href: 'https://linkin.bio/click_here/' },
+    { name: 'Privacy Policy', href: '/privacy' },
   ],
   legal: [
     { name: 'Whatsapp Channel', href: 'https://www.whatsapp.com/channel/0029Va4mZrK8fewhKYnjU83Y' },

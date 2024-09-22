@@ -50,7 +50,7 @@ import {
   
   export default function Example() {
     return (
-      <div className="overflow-hidden bg-gray-50 py-16 lg:py-24">
+      <div className="overflow-hidden bg-white py-16 lg:py-24 my-10">
         <div className="relative mx-auto max-w-xl px-6 lg:max-w-7xl lg:px-8">
           {/* <svg
             fill="none"
@@ -94,12 +94,11 @@ import {
                   </div>
                 ))}
               </dl> */}
-               <Link
-                to="/contact"
-                className="mt-4 sm:mt-0 bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                Contact Us
-        </Link>
+              <div className="mt-0 text-md flex items-center gap-x-6">
+                            <div className="py-6">
+                                   <button className="mt-4 sm:mt-0 bg-[#1D7BC7] text-white px-10 py-3.5 rounded">Click Here To Join</button>
+                          </div>
+                </div>
             </div>
   
             <div aria-hidden="true" className="relative -mx-4 mt-10 lg:mt-0">

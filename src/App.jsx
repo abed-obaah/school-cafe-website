@@ -8,7 +8,8 @@ import ContactSection from './components/Pages/ContactSection';
 import Footer from './components/Footer';
 import AppDownloadSection from './components/AppDownloadSection';
 import About from './components/Pages/about';
-
+import Privacy from './components/Pages/privacy';
+import School from './components/Pages/featuredSchoolPage'
 function App() {
   const location = useLocation();  // Hook to get the current route
 
@@ -26,6 +27,8 @@ function App() {
         <Route path="/" element={<MainBanner />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/about" element={<About />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/school" element={<School />} />
       </Routes>
       <AppDownloadSection/>
       <Footer />
