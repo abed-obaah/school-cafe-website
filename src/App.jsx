@@ -10,6 +10,7 @@ import About from './components/Pages/about';
 import Privacy from './components/Pages/privacy';
 import School from './components/Pages/featuredSchoolPage'
 import Auth from './components/auth'
+import Community from './components/Pages/community/index'
 
 function App() {
   const location = useLocation();  // Hook to get the current route
@@ -35,6 +36,7 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/school" element={<School />} />
         <Route path="/login" element={<Auth />} />
+        <Route path="/community" element={<Community />} />
       </Routes>
 
       {/* Conditionally render AppDownloadSection and Footer based on current route */}

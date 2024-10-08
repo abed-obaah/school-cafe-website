@@ -81,7 +81,7 @@ export default function Example() {
           <Link to="/community" className="text-sm font-semibold leading-6 text-gray-900">
             Community
           </Link>
-          <Link to="/schools" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to="/school" className="text-sm font-semibold leading-6 text-gray-900">
             Featured Schools
           </Link>
           <Link to="/shop" className="text-sm font-semibold leading-6 text-gray-900">

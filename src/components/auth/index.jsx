@@ -125,7 +125,7 @@ const LoginForm = () => (
     </a>
     <button
       type="submit"
-      className="w-full bg-[#1D7BC7] text-white p-3 rounded-lg hover:bg-blue-600 transition duration-200"
+      className="w-full bg-[#1D7BC7] text-white p-3 rounded-md hover:bg-blue-600 transition duration-200"
     >
       Login
     </button>
@@ -176,7 +176,7 @@ const RegisterForm = () => (
     </div>
     <button
       type="submit"
-      className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-200"
+      className="w-full bg-[#1D7BC7] text-white p-3 rounded-md hover:bg-blue-600 transition duration-200"
     >
       Register
     </button>
