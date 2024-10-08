@@ -35,7 +35,7 @@ const Accordion = () => {
       {faqs.map((faq, index) => (
         <div key={index} className="border rounded-lg mb-4">
           <div
-            className="bg-blue-100 px-4 py-3 flex justify-between items-center cursor-pointer border-b border-gray-400"
+            className="bg-[#EDF7FF] px-4 py-3 flex justify-between items-center cursor-pointer border-b border-gray-400"
             onClick={() => toggleAccordion(index)}
           >
             <h3 className="text-xl font-medium text-[#00172A]">{faq.question}</h3>

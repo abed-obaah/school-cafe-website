@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/header';
@@ -10,18 +9,24 @@ import AppDownloadSection from './components/AppDownloadSection';
 import About from './components/Pages/about';
 import Privacy from './components/Pages/privacy';
 import School from './components/Pages/featuredSchoolPage'
+import Auth from './components/auth'
+
 function App() {
   const location = useLocation();  // Hook to get the current route
 
   // List of routes where SearchBar should be displayed
   const showSearchBarRoutes = ['/']; 
 
+  // List of routes where Header, Footer, and AppDownloadSection should be hidden
+  const hideLayoutRoutes = ['/login'];
+
   return (
     <div>
-      <Header />
+      {/* Conditionally render Header, SearchBar, and Footer based on current route */}
+      {!hideLayoutRoutes.includes(location.pathname) && <Header />}
 
       {/* Conditionally render SearchBar based on the current route */}
-      {showSearchBarRoutes.includes(location.pathname) && <SearchBar />}
+      {!hideLayoutRoutes.includes(location.pathname) && showSearchBarRoutes.includes(location.pathname) && <SearchBar />}
 
       <Routes>
         <Route path="/" element={<MainBanner />} />
@@ -29,9 +34,12 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/school" element={<School />} />
+        <Route path="/login" element={<Auth />} />
       </Routes>
-      <AppDownloadSection/>
-      <Footer />
+
+      {/* Conditionally render AppDownloadSection and Footer based on current route */}
+      {!hideLayoutRoutes.includes(location.pathname) && <AppDownloadSection />}
+      {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </div>
   );
 }
