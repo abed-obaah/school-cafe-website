@@ -1,6 +1,6 @@
 // import { CheckCircleIcon } from '@heroicons/react/20/ou'
 
-import home from '../../assets/home.svg'
+import home from '../../assets/people.svg'
 
 const benefits = [
   'Competitive salaries',
