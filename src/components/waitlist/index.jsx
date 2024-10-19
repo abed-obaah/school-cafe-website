@@ -28,40 +28,40 @@ export default function Example() {
 
 <div className="relative isolate px-6 pt-14 lg:px-8">
   {/* Floating Button (Top-Left, closer to center) */}
-  <div className="absolute top-1/3 left-[20%]">
-    <button className="px-10 py-1.5 bg-[#00172A] text-white rounded-full ">
-    Get Scholarships
+  <div className="absolute top-1/3 left-[20%] hidden md:block">
+    <button className="px-10 py-1.5 bg-[#00172A] text-white rounded-full">
+      Get Scholarships
     </button>
   </div>
-  <div className="absolute top-[45%] left-[10%]">
-    <button className="px-10 py-1.5 bg-[#0CD241] text-white rounded-full ">
-    Career Opportunities
+  <div className="absolute top-[45%] left-[10%] hidden md:block">
+    <button className="px-10 py-1.5 bg-[#0CD241] text-white rounded-full">
+      Career Opportunities
     </button>
   </div>
 
   {/* Floating Button (Top-Right, closer to center) */}
-  <div className="absolute top-1/3 right-[20%]">
-    <button className="px-10 py-1.5 bg-[#00172A] text-white rounded-full ">
-    Connect With People
+  <div className="absolute top-1/3 right-[20%] hidden md:block">
+    <button className="px-10 py-1.5 bg-[#00172A] text-white rounded-full">
+      Connect With People
     </button>
   </div>
-  <div className="absolute top-[45%] right-[10%]"> 
-  <button className="px-10 py-1.5 bg-[#0CD241] text-white rounded-full ">
-  Make Money
-  </button>
-</div>
+  <div className="absolute top-[45%] right-[10%] hidden md:block">
+    <button className="px-10 py-1.5 bg-[#0CD241] text-white rounded-full">
+      Make Money
+    </button>
+  </div>
 
   {/* Floating Button (Bottom-Left, closer to center) */}
-  <div className="absolute bottom-1/3 left-[20%]">
-    <button className="px-10 py-1.5 bg-[#FFD400] text-white rounded-full  ">
-    Skill Acquisition
+  <div className="absolute bottom-1/3 left-[20%] hidden md:block">
+    <button className="px-10 py-1.5 bg-[#FFD400] text-white rounded-full">
+      Skill Acquisition
     </button>
   </div>
 
   {/* Floating Button (Bottom-Right, closer to center) */}
-  <div className="absolute bottom-1/3 right-[20%]">
+  <div className="absolute bottom-1/3 right-[20%] hidden md:block">
     <button className="px-10 py-1.5 bg-[#FFD400] text-white rounded-full">
-    Get Latest Updates
+      Get Latest Updates
     </button>
   </div>
 
@@ -78,13 +78,11 @@ export default function Example() {
       className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#EEF6FC] to-[#EEF6FC] opacity-100 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
     />
   </div>
- 
 
   <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center">
-
-        <div className="flex items-center justify-center mb-24">
-          <img src={logo} alt="App Store" className="h-20 mr-2" />
-        </div>
+    <div className="flex items-center justify-center mb-24">
+      <img src={logo} alt="App Store" className="h-20 mr-2" />
+    </div>
 
     <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
       Become The 1%ers Of School Cafe
@@ -119,7 +117,6 @@ export default function Example() {
     />
   </div>
 </div>
-
 
       <Carousel/>
       <CTA/>
