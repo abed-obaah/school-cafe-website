@@ -115,11 +115,16 @@ export default function Example() {
             >
               Contact Us
             </Link>
+            <Link
+            to="/dashboard"
+            >
             <img
               alt=""
               src={Avatar}
               className="h-8 w-auto"
             />
+            </Link>
+
           </div>
         </div>
       </nav>

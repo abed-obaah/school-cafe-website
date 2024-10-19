@@ -88,20 +88,20 @@ export default function Example() {
           />
         </div>
       </div>
-      <div className="flex">
-  {/* Post Section */}
-  <div className="flex-1">
-    {/* Header */}
-    <Header />
-    {/* Posts */}
-    <PostSection />
-  </div>
+      <div className="flex space-x-2 ml-28">
+          {/* Post Section */}
+          <div className="flex-1">
+            {/* Header */}
+            <Header />
+            {/* Posts */}
+            <PostSection />
+          </div>
 
-  {/* Sidebar */}
-  <div className="w-[40%]">
-    <Sidebar />
-  </div>
-</div>
+          {/* Sidebar */}
+          <div className="w-[40%]">
+            <Sidebar />
+          </div>
+      </div>
     </div>
   )
 }
