@@ -7,7 +7,7 @@ import home from '../../assets/home.svg'
 
 const NewsSection = () => {
   return (
-    <div className="flex items-center justify-between bg-blue-100 p-10 rounded-xl max-w-7xl mx-auto mt-10">
+    <div className="flex items-center justify-between bg-blue-100 p-10 rounded-xl max-w-7xl mx-auto mt-10 mb-20">
         
       <div className="max-w-xl px-10 space-y-10">
     
