@@ -28,38 +28,38 @@ export default function Example() {
 
 <div className="relative isolate px-6 pt-14 lg:px-8">
   {/* Floating Button (Top-Left, closer to center) */}
-  <div className="absolute top-1/3 left-[20%] hidden md:block">
+  <div className="absolute top-1/3 left-[10%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#00172A] text-white rounded-full">
       Get Scholarships
     </button>
   </div>
-  <div className="absolute top-[45%] left-[10%] hidden md:block">
-    <button className="px-10 py-1.5 bg-[#0CD241] text-white rounded-full">
+  <div className="absolute top-[45%] left-[5%] hidden lg:block">
+    <button className="px-6 py-1.5 bg-[#0CD241] text-white rounded-full">
       Career Opportunities
     </button>
   </div>
 
   {/* Floating Button (Top-Right, closer to center) */}
-  <div className="absolute top-1/3 right-[20%] hidden md:block">
+  <div className="absolute top-1/3 right-[10%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#00172A] text-white rounded-full">
       Connect With People
     </button>
   </div>
-  <div className="absolute top-[45%] right-[10%] hidden md:block">
+  <div className="absolute top-[45%] right-[5%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#0CD241] text-white rounded-full">
       Make Money
     </button>
   </div>
 
   {/* Floating Button (Bottom-Left, closer to center) */}
-  <div className="absolute bottom-1/3 left-[20%] hidden md:block">
+  <div className="absolute bottom-1/3 left-[10%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#FFD400] text-white rounded-full">
       Skill Acquisition
     </button>
   </div>
 
   {/* Floating Button (Bottom-Right, closer to center) */}
-  <div className="absolute bottom-1/3 right-[20%] hidden md:block">
+  <div className="absolute bottom-1/3 right-[10%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#FFD400] text-white rounded-full">
       Get Latest Updates
     </button>
@@ -117,6 +117,8 @@ export default function Example() {
     />
   </div>
 </div>
+
+
 
       <Carousel/>
       <CTA/>
