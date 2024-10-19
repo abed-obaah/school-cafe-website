@@ -33,7 +33,7 @@ function App() {
 
       <Routes>
       <Route path="/" element={<Waitlist />} />
-        {/* <Route path="/m" element={<MainBanner />} /> */}
+        <Route path="/m" element={<MainBanner />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/about" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
@@ -41,7 +41,7 @@ function App() {
         <Route path="/login" element={<Auth />} />
         <Route path="/community" element={<Community />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        {/* <Route path="/waitlist" element={<Waitlist />} /> */}
+        <Route path="/waitlist" element={<Waitlist />} />
       </Routes>
 
       {/* Conditionally render AppDownloadSection and Footer based on current route */}

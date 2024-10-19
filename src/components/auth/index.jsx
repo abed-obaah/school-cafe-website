@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Cafe from '../../assets/Cafe.svg';
+import Cafe from '../../assets/cafe.svg';
 
 // Import your left and right background images
 import LeftBackground from '../../assets/side.svg'; // Replace with your actual image path
