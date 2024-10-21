@@ -44,7 +44,7 @@ const posts = [
 
 export default function Example() {
   return (
-    <div className="bg-white py-24 sm:py-4">
+    <div className="bg-white py-24 sm:py-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Swiper Carousel */}
         <div className="mt-16">

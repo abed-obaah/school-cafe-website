@@ -1,5 +1,3 @@
-// import { CheckCircleIcon } from '@heroicons/react/20/ou'
-
 import home from '../../assets/people.svg'
 
 const benefits = [
@@ -15,15 +13,18 @@ export default function Example() {
   return (
     <div className="py-24 sm:py-32">
       <div className="relative isolate">
-        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="mx-auto flex flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
-            <img
-              alt=""
-              src="https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-              className="h-64 w-full flex-none rounded-2xl object-cover shadow-xl lg:h-96 lg:w-[60%] lg:max-w-none"
-            />
+        <div className="mx-auto max-w-7xl sm:px-6 lg:px-3">
+          <div className="mx-auto flex flex-col gap-16 bg-white/5 px- py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
+            
+            <div className="flex-none lg:w-[55%] lg:mr-8"> {/* Adjusted the width and margin for the image */}
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+                className="h-64 w-full rounded-2xl object-cover shadow-xl lg:h-96 lg:max-w-none"
+              />
+            </div>
 
-            <div className="w-full flex-auto">
+            <div className="w-full flex-auto mt-8 lg:mt-0 lg:ml-4"> {/* Adjusted margin for the text section */}
               <h3 className="text-lg font-medium text-black sm:text-xl">Why are we here?</h3>
               <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl lg:text-4xl">
                 Making the Student Journey Simple and <br /> Stress-Free
