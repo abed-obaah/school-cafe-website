@@ -14,7 +14,7 @@ export default function Example() {
     <div className="py-24 sm:py-32">
       <div className="relative isolate">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-3">
-          <div className="mx-auto flex flex-col gap-16 bg-white/5 px- py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
+          <div className="mx-auto flex flex-col gap-8 bg-white/5 px-6 lg:px-0 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
             
             <div className="flex-none lg:w-[55%] lg:mr-8"> {/* Adjusted the width and margin for the image */}
               <img

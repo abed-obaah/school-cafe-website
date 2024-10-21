@@ -1,13 +1,13 @@
 // NewsSection.js
-import React from "react";
+// import React from "react";
 import gradCap from "../../assets/Subheading.svg"; // Ensure the image exists in /src
-import arrow from '../../assets/arrow-circle-left.svg';
+// import arrow from '../../assets/arrow-circle-left.svg';
 import home from '../../assets/home.svg';
 
 const NewsSection = () => {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between bg-blue-100 p-8 lg:p-10 rounded-xl max-w-7xl mx-auto mt-10 mb-20">
-      <div className="max-w-xl px-4 lg:px-10 space-y-6">
+      <div className="max-w-xl px-4 lg:px-10 mt-5 space-y-6 lg:order-first order-2">
         <h2 className="text-3xl lg:text-5xl font-bold text-gray-800 mb-4">
           You Are A Step Away From Becoming One Of Our 1%er
         </h2>
@@ -24,7 +24,7 @@ const NewsSection = () => {
           </a>
         </div>
       </div>
-      <div className="w-64 h-64 lg:w-80 lg:h-80 mt-6 lg:mt-0">
+      <div className="w-64 h-64 lg:w-80 lg:h-80 mt-6 lg:mt-0 lg:order-last order-1 mb-5">
         <img src={gradCap} alt="Graduation Cap" className="w-full h-full object-cover" />
       </div>
     </div>
