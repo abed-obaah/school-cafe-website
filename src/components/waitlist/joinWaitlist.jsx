@@ -16,7 +16,7 @@ const NewsSection = () => {
         </p>
         <div className="mt-4 flex items-center gap-x-4">
           <a
-            href="#"
+            href="https://chat.whatsapp.com/KEB7glBiA5fJuYGxjbdIum"
             className="flex items-center justify-center space-x-2 rounded-md bg-[#1D7BC7] px-8 lg:px-16 py-2 lg:py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             <span className='text-lg'>Join Waitlist</span>
