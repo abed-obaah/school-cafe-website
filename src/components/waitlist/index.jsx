@@ -28,38 +28,38 @@ export default function Example() {
 
 <div className="relative isolate px-6 pt-14 lg:px-8">
   {/* Floating Button (Top-Left, closer to center) */}
-  <div className="absolute top-1/3 left-[10%] hidden lg:block">
+  <div className="absolute top-1/3 left-[20%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#00172A] text-white rounded-full">
       Get Scholarships
     </button>
   </div>
-  <div className="absolute top-[45%] left-[5%] hidden lg:block">
+  <div className="absolute top-[45%] left-[15%] hidden lg:block">
     <button className="px-6 py-1.5 bg-[#0CD241] text-white rounded-full">
       Career Opportunities
     </button>
   </div>
 
   {/* Floating Button (Top-Right, closer to center) */}
-  <div className="absolute top-1/3 right-[10%] hidden lg:block">
+  <div className="absolute top-1/3 right-[20%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#00172A] text-white rounded-full">
       Connect With People
     </button>
   </div>
-  <div className="absolute top-[45%] right-[5%] hidden lg:block">
+  <div className="absolute top-[45%] right-[15%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#0CD241] text-white rounded-full">
       Make Money
     </button>
   </div>
 
   {/* Floating Button (Bottom-Left, closer to center) */}
-  <div className="absolute bottom-1/3 left-[10%] hidden lg:block">
+  <div className="absolute bottom-1/3 left-[20%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#FFD400] text-white rounded-full">
       Skill Acquisition
     </button>
   </div>
 
   {/* Floating Button (Bottom-Right, closer to center) */}
-  <div className="absolute bottom-1/3 right-[10%] hidden lg:block">
+  <div className="absolute bottom-1/3 right-[20%] hidden lg:block">
     <button className="px-10 py-1.5 bg-[#FFD400] text-white rounded-full">
       Get Latest Updates
     </button>
@@ -80,8 +80,12 @@ export default function Example() {
   </div>
 
   <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center">
-    <div className="flex items-center justify-center mb-24">
-      <img src={logo} alt="App Store" className="h-20 mr-2" />
+  <div className="flex items-center justify-center mb-24">
+        <img 
+            src={logo} 
+            alt="App Store" 
+            className="h-16 sm:h-20 lg:h-24 mr-2" 
+        />
     </div>
 
     <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
