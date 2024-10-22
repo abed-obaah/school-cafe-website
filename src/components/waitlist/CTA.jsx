@@ -1,4 +1,5 @@
 import home from '../../assets/people.svg'
+import home2 from '../../assets/team.png'
 
 const benefits = [
   'Competitive salaries',
@@ -19,7 +20,7 @@ export default function Example() {
             <div className="flex-none lg:w-[55%] lg:mr-8"> {/* Adjusted the width and margin for the image */}
               <img
                 alt=""
-                src="https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+                src={home2}
                 className="h-64 w-full rounded-2xl object-cover shadow-xl lg:h-96 lg:max-w-none"
               />
             </div>

@@ -10,13 +10,13 @@ const posts = [
     title: "Boost your conversion rate",
     href: "#",
     description:
-      "This platform has been a game-changer for me. Managing my studies and finances used to feel overwhelming, but the guidance and tools provided here have made everything so much easier. From study tips to budgeting advice, I now feel more in control and confident about my future. I honestly don’t know how I would have gotten through my semester without their support!",
+      "Joining this community has been a game-changer for my studies. The resources and support are unmatched!",
     imageUrl:
       "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
     date: "Mar 16, 2020",
     datetime: "2020-03-16",
     author: {
-        name: "Michael Foster",
+        name: "Sarah",
         level:'DELSU, 300lv',
         imageUrl:
           "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
@@ -27,13 +27,30 @@ const posts = [
     title: "Boost your conversion rate",
     href: "#",
     description:
-      "This platform has been a game-changer for me. Managing my studies and finances used to feel overwhelming, but the guidance and tools provided here have made everything so much easier. From study tips to budgeting advice, I now feel more in control and confident about my future. I honestly don’t know how I would have gotten through my semester without their support!",
+      "I used to struggle with finding past questions, but now everything I need is just a click away. It’s saved me so much time",
     imageUrl:
       "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
     date: "Mar 16, 2020",
     datetime: "2020-03-16",
     author: {
-        name: "Michael Foster",
+        name: "Daniel",
+        level:'DELSU, 200lv',
+        imageUrl:
+          "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      },
+  },
+  {
+    id: 1,
+    title: "Boost your conversion rate",
+    href: "#",
+    description:
+      "The answers I got for my assignments were spot-on. It’s like having a study buddy available 24/7.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
+    date: "Mar 16, 2020",
+    datetime: "2020-03-16",
+    author: {
+        name: "Fatima",
         level:'DELSU, 300lv',
         imageUrl:
           "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
@@ -44,13 +61,13 @@ const posts = [
     title: "Boost your conversion rate",
     href: "#",
     description:
-      "This platform has been a game-changer for me. Managing my studies and finances used to feel overwhelming, but the guidance and tools provided here have made everything so much easier. From study tips to budgeting advice, I now feel more in control and confident about my future. I honestly don’t know how I would have gotten through my semester without their support!",
+      "This platform made me feel more connected to my peers and really helped me improve academically.",
     imageUrl:
       "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
     date: "Mar 16, 2020",
     datetime: "2020-03-16",
     author: {
-        name: "Michael Foster",
+        name: "Tomi",
         level:'DELSU, 300lv',
         imageUrl:
           "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
@@ -61,31 +78,14 @@ const posts = [
     title: "Boost your conversion rate",
     href: "#",
     description:
-      "This platform has been a game-changer for me. Managing my studies and finances used to feel overwhelming, but the guidance and tools provided here have made everything so much easier. From study tips to budgeting advice, I now feel more in control and confident about my future. I honestly don’t know how I would have gotten through my semester without their support!",
+      "I was skeptical at first, but this community truly delivers. It’s helped me stay on top of my coursework without the usual stress.",
     imageUrl:
       "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
     date: "Mar 16, 2020",
     datetime: "2020-03-16",
     author: {
-        name: "Michael Foster",
-        level:'DELSU, 300lv',
-        imageUrl:
-          "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      },
-  },
-  {
-    id: 1,
-    title: "Boost your conversion rate",
-    href: "#",
-    description:
-      "This platform has been a game-changer for me. Managing my studies and finances used to feel overwhelming, but the guidance and tools provided here have made everything so much easier. From study tips to budgeting advice, I now feel more in control and confident about my future. I honestly don’t know how I would have gotten through my semester without their support!",
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    author: {
-      name: "Michael Foster",
-      level:'DELSU, 300lv',
+      name: "Anita",
+      level:'DELSU, 100lv',
       imageUrl:
         "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },

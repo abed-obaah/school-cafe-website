@@ -2,49 +2,59 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation,Autoplay } from 'swiper/modules'; // Correct way to import Navigation
 import 'swiper/css';
 import 'swiper/css/navigation'; // Import Swiper navigation module
+import smiley from '../../assets/simley.jpg'
+import smiley2 from '../../assets/smiley2.jpg'
+import smiley3 from '../../assets/smiley3.jpg'
+import smiley4 from '../../assets/smiley4.jpg'
+// import smiley5 from '../../assets/smiley5.jpg'
 
 const posts = [
   {
     id: 1,
     imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    smiley,
   },
   {
     id: 2,
     imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    smiley2 ,
   },
   {
     id: 3,
     imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    smiley3,
   },
   {
     id: 3,
     imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    smiley4 ,
+  },
+  {
+    id: 1,
+    imageUrl:
+    smiley,
+  },
+  {
+    id: 2,
+    imageUrl:
+    smiley2 ,
   },
   {
     id: 3,
     imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    smiley3,
   },
   {
     id: 3,
     imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    id: 3,
-    imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    smiley4 ,
   },
   // Add more posts...
 ];
 
 export default function Example() {
   return (
-    <div className="bg-white py-24 sm:py-10">
+    <div className="bg-white py-20 sm:py-10">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Swiper Carousel */}
         <div className="mt-16">
@@ -68,7 +78,7 @@ export default function Example() {
                 <img
                   src={post.imageUrl}
                   alt={`Slide ${post.id}`} // Provide an alt attribute for accessibility
-                  className="h-full w-full object-cover rounded-xl" // Adjust styles as necessary
+                  className="h-[430px] w-full object-cover rounded-xl" // Adjust styles as necessary
                 />
               </SwiperSlide>
             ))}
