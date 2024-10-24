@@ -36,7 +36,7 @@ export default function Example() {
 
               <div className="mt-6 flex gap-x-6">
                 <a
-                  href="https://chat.whatsapp.com/KEB7glBiA5fJuYGxjbdIum"
+                  href="https://forms.gle/nu2Bc6tWr4qrKRQy8"
                   className="flex items-center justify-center space-x-2 rounded-md bg-[#1D7BC7] px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   <span className="text-lg">Join Our Community</span>

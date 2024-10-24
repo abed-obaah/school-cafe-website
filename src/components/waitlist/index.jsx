@@ -89,10 +89,10 @@ export default function Example() {
     </div>
 
     <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-      Become The 1%ers Of School Cafe
+    Here to Make Your Life Easier
     </h1>
     <p className="mt-6 text-xl leading-8 text-[#888888] font-light">
-      Gain and earn from us faster by being the first person to register. Click the link below to join our waitlist today!
+    Click the button below to access our mind blowing offers. We can't wait to hear from you!
     </p>
 
     {/* Join Waitlist Button */}
