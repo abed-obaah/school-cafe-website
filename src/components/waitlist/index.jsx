@@ -98,7 +98,7 @@ export default function Example() {
     {/* Join Waitlist Button */}
     <div className="mt-10 flex items-center justify-center gap-x-6">
       <a
-        href="https://chat.whatsapp.com/KEB7glBiA5fJuYGxjbdIum"
+        href="https://forms.gle/nu2Bc6tWr4qrKRQy8"
         className="flex items-center justify-center space-x-2 rounded-md bg-[#1D7BC7] px-16 py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
       >
         <span className="text-lg ml-2">Join Waitlist</span>
