@@ -215,6 +215,7 @@ const UserProfile = () => {
         className="w-4 h-4 mr-2" />
       <span>Copy Referral Code</span>
     </span>
+    
 
             <span
               className="inline-flex items-center rounded-md px-2 py-2 text-xs font-medium text-[#888888] ring-1 ring-inset ring-red-600/10"
@@ -229,7 +230,7 @@ const UserProfile = () => {
 
 
         </div><div>
-            <Tools />
+        <Tools userData={userData} />
             <div className="p-8 bg-white min-h-screen ">
               {/* Your Rank Progress Section */}
               <div className="flex justify-center ">
@@ -346,7 +347,7 @@ const UserProfile = () => {
                   </div>
 
 
-                  <TransactionList />
+                  <TransactionList userData={userData} />
                 </main>
               </div>
             </div>

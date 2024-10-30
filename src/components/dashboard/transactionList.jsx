@@ -1,62 +1,38 @@
-import { FaChartBar, FaTasks } from 'react-icons/fa'; // Importing icons
-import { Fragment, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import incoming from '../../assets/incoming.svg';
 import outgoing from '../../assets/outgoing.svg';
 
-export default function Example() {
-  const paymentData = [
-    {
-      title: "Referral Payment",
-      date: "Today 12:00am",
-      amount: "NGN6,000",
-      type: "incoming",
-    },
-    {
-      title: "Airtime Payment",
-      date: "Today 12:00am",
-      amount: "NGN6,000",
-      type: "outgoing",
-    },
-    {
-      title: "Past Question Payment",
-      date: "Yesterday 10:30am",
-      amount: "NGN3,000",
-      type: "incoming",
-    },
-    // Add more items to exceed 7 if you want to test the Show All functionality
-    {
-      title: "Tuition Fee Payment",
-      date: "Last Week 9:00am",
-      amount: "NGN50,000",
-      type: "outgoing",
-    },
-    {
-      title: "Book Payment",
-      date: "Yesterday 1:30pm",
-      amount: "NGN12,000",
-      type: "incoming",
-    },
-    {
-      title: "Event Payment",
-      date: "Today 4:00pm",
-      amount: "NGN15,000",
-      type: "outgoing",
-    },
-    {
-      title: "Transport Fee Payment",
-      date: "Last Month 8:00am",
-      amount: "NGN7,000",
-      type: "incoming",
-    },
-    {
-      title: "Laptop Payment",
-      date: "Yesterday 2:15pm",
-      amount: "NGN90,000",
-      type: "incoming",
-    },
-  ];
-
+const TransactionList = ({ userData }) => {
+  const [paymentData, setPaymentData] = useState([]);
   const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    if (userData) {
+      console.log('userData:', userData); // Check if userData is defined
+      console.log(userData.id); // Log user ID if userData is defined
+
+      const fetchTransactions = async () => {
+        try {
+          const userId = userData.id; // Use the dynamic user ID from userData
+          const response = await fetch(`https://schoolcafe.ng/api/users.php?action=fetchTransactions&user_id=${userId}`);
+          const data = await response.json();
+          console.log("trans:",data)
+          
+          if (data.transactions && Array.isArray(data.transactions)) {
+            setPaymentData(data.transactions); // Use the transactions array
+          } else {
+            console.error("Invalid data format:", data);
+          }
+        } catch (error) {
+          console.error("Error fetching transactions:", error);
+        }
+      };
+
+      fetchTransactions();
+    } else {
+      console.warn('userData is not defined'); // Warning message
+    }
+  }, [userData]); // Run effect whenever userData changes
 
   // Determine how many items to display
   const displayedPayments = showAll ? paymentData : paymentData.slice(0, 7);
@@ -77,13 +53,14 @@ export default function Example() {
                     {/* Left Side: Icon + Text */}
                     <div className="flex items-center">
                       <img
-                        src={payment.type === "incoming" ? incoming : outgoing}
-                        alt={`${payment.title} icon`}
+                        src={payment.transaction_type === "credit" ? incoming : outgoing}
+                        alt={`${payment.transaction_type} icon`}
                         className="w-10 h-10 mr-4"
                       />
                       <div>
-                        <span className="text-xs text-[#B3B3B3]">{payment.date}</span>
-                        <h2 className="text-lg font-semibold mb-2">{payment.title}</h2>
+                        <span className="text-xs text-[#B3B3B3]">{new Date(payment.created_at).toLocaleString()}</span>
+                        {/* <h2 className="text-lg font-semibold mb-2">{`Payment of NGN${payment.amount}`}</h2> */}
+                        <h2 className="text-lg font-semibold mb-2">{payment.title} {payment.amount}</h2>
                       </div>
                     </div>
 
@@ -91,10 +68,10 @@ export default function Example() {
                     <a
                       href="#"
                       className={`text-md ${
-                        payment.type === "incoming" ? "text-[#0CD241]" : "text-red-500"
+                        payment.transaction_type === "credit" ? "text-[#0CD241]" : "text-red-500"
                       }`}
                     >
-                      {payment.amount}
+                      {`NGN${payment.amount}`}
                     </a>
                   </div>
                 </div>
@@ -118,4 +95,6 @@ export default function Example() {
       </main>
     </div>
   );
-}
+};
+
+export default TransactionList;
