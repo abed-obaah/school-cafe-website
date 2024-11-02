@@ -7,6 +7,8 @@ import Cafe from '../../assets/cafe.svg';
 import LeftBackground from '../../assets/side.svg'; // Replace with your actual image path
 import RightBackground from '../../assets/side.svg'; // Replace with your actual image path
 import { useNavigate } from 'react-router-dom';
+import woman1 from '../../assets/woman2.webp';
+import woman2 from '../../assets/woman3.jpg';
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true); // State to switch between Login and Register forms
@@ -28,13 +30,13 @@ function Login() {
       <img
         alt="Cafe Logo"
         src={Cafe}
-        className="h-8 w-auto mb-5"
+        className="h-8 w-auto mb-10"
       />
 
       {/* Content Wrapper for Carousel and Forms */}
-      <div className="flex flex-col lg:flex-row w-full justify-center">
-        {/* Left side: Image Carousel */}
-        <div className="w-full lg:w-1/3 flex items-center justify-center p-5">
+      <div className="flex flex-col lg:flex-row w-full justify-center lg:gap-10"> {/* Reduced gap between columns */}
+        {/* Left side: Image Carousel (Hidden on smaller screens) */}
+        <div className="hidden lg:flex w-full lg:w-1/3 items-center justify-center p-5">
           <Carousel
             showThumbs={false}
             infiniteLoop
@@ -44,22 +46,15 @@ function Login() {
           >
             <div>
               <img
-                src="https://via.placeholder.com/600x400?text=Image+1"
+                src={woman1}
                 alt="Slide 1"
                 className="rounded-lg"
               />
             </div>
             <div>
               <img
-                src="https://via.placeholder.com/600x400?text=Image+2"
+                src={woman1}
                 alt="Slide 2"
-                className="rounded-lg"
-              />
-            </div>
-            <div>
-              <img
-                src="https://via.placeholder.com/600x400?text=Image+3"
-                alt="Slide 3"
                 className="rounded-lg"
               />
             </div>
@@ -68,6 +63,14 @@ function Login() {
 
         {/* Right side: Login/Register Form */}
         <div className="w-full lg:w-1/3 flex flex-col justify-center items-center p-5">
+          <div className="text-left mb-6 w-full">
+            <h1 className="text-2xl font-bold">
+              {isLogin ? "Login" : "Create an account"}
+            </h1>
+            <p className="text-sm text-gray-500">
+              {isLogin ? "Please fill in your credentials to login" : "Please fill in details to create an account"}
+            </p>
+          </div>
           <div className="flex justify-around w-full mb-6">
             <button
               className={`text-lg px-4 py-2 border-b-2 ${
@@ -102,27 +105,23 @@ const LoginForm = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+  
     const email = e.target.email.value;
     const password = e.target.password.value;
-
-    const promise = fetch("https://schoolcafe.ng/api/users.php?action=login", {
+  
+    const loginPromise = fetch("https://schoolcafe.ng/api/users.php?action=login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
-
-    // Show the toast notifications for the promise
+  
     toast.promise(
-      promise,
+      loginPromise,
       {
-        pending: 'Logging in...',
-        success: {
-          render({ data }) {
-            return `Welcome back!`;
-          },
-        },
+        pending: "Logging in...",
+        success: "Welcome back!",
         error: {
           render({ data }) {
             return `Login failed: ${data.message || 'Unknown error'}`;
@@ -130,33 +129,23 @@ const LoginForm = () => {
         },
       }
     );
-
+  
     try {
-      const response = await promise;
+      const response = await loginPromise;
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-
-      // Wait for the toast message to display before navigating
-      toast.promise(
-        new Promise((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 1000); // Wait 1 second before resolving
-        }),
-        {
-          success: {
-            render() {
-              navigate(`/dashboard?email=${encodeURIComponent(email)}`);
-              return '';
-            },
+  
+      if (response.ok && data.message === "Login successful.") {
+        toast.success("Login successful!", {
+          onClose: () => {
+            navigate(`/dashboard?email=${encodeURIComponent(email)}`);
           },
-        }
-      );
+        });
+      } else {
+        throw new Error(data.error || 'Invalid login attempt.');
+      }
+  
     } catch (error) {
-      console.error(error);
+      toast.error(`Login failed: ${error.message}`);
     }
   };
 
@@ -199,7 +188,7 @@ const RegisterForm = () => {
     e.preventDefault();
     const username = e.target.username.value;
     const email = e.target.email.value;
-    const referrer_code = e.target.referralCode.value; // Ensure this matches the backend
+    const referrer_code = e.target.referralCode.value;
     const password = e.target.password.value;
 
     const promise = fetch("https://schoolcafe.ng/api/users.php?action=register", {
@@ -215,7 +204,7 @@ const RegisterForm = () => {
       {
         pending: 'Creating account...',
         success: {
-          render({ data }) {
+          render() {
             return `Account created successfully!`;
           },
         },
@@ -279,15 +268,13 @@ const RegisterForm = () => {
       <div className="mb-3 flex items-center">
         <input
           defaultChecked
-          id="same-as-shipping"
-          name="same-as-shipping"
           type="checkbox"
-          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+          name="terms"
+          required
+          className="mr-2"
         />
-        <div className="ml-2">
-          <label htmlFor="same-as-shipping" className="text-sm font-medium text-gray-700">
-            I accept the Terms and Conditions
-          </label>
+        <div className="ml-2 text-xs text-gray-400">
+          Accept terms and conditions.
         </div>
       </div>
       <button
@@ -298,6 +285,6 @@ const RegisterForm = () => {
       </button>
     </form>
   );
-}
+};
 
 export default Login;
