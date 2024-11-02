@@ -5,6 +5,9 @@ import { Dialog, DialogPanel, Popover, PopoverButton, PopoverGroup, PopoverPanel
 import Logo from '../../assets/logoProfile.svg';
 import upload from '../../assets/upload.svg';
 import user from '../../assets/change.svg';
+
+import { useUserContext } from '../../UserContext';
+
 import {
     ArrowPathIcon,
     Bars3Icon,
@@ -42,6 +45,7 @@ const company = [
 ];
 
 export default function Example() {
+    const { user } = useUserContext();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -183,16 +187,19 @@ export default function Example() {
             <div className="flex flex-col items-center justify-center">
     <div className="max-w-3xl w-full mx-auto">
       {/* Back to Dashboard Link */}
-      <div className="mb-4">
-    <a href="#" className="text-sm text-[#B3B3B3]">&lt; back to Dashboard</a>
-  </div>
+                <div className="mb-4">
+                    <Link to={'/dashboard'}>
+                   
+                <a href="#" className="text-sm text-[#B3B3B3]">&lt; back to Dashboard</a>
+                </Link>
+            </div>
 
-  {/* Edit Profile Header */}
-  <div className="mb-4">
-  <h1 className="text-lg font-bold text-gray-800 border-b-4 border-blue-600 w-1/2">
-    Edit Profile
-  </h1>
-</div>
+        {/* Edit Profile Header */}
+        <div className="mb-4">
+        <h1 className="text-lg font-bold text-gray-800 border-b-4 border-blue-600 w-1/2">
+            Edit Profile
+        </h1>
+        </div>
 
       {/* Profile Editing Box */}
       <div className="p-8 rounded-lg shadow-lg border max-w-3xl w-full mx-auto">
@@ -232,7 +239,7 @@ export default function Example() {
             <div className="relative w-80"> {/* Increased width here */}
               <input
                 type="text"
-                value="Tejiri StarBoy"
+                value={user.email}
                 className="w-full p-2 border border-gray-300 rounded-lg font-bold text-lg pr-16"
               />
               <a href="#" className="absolute right-4 top-1/2 transform -translate-y-1/2 text-sm text-blue-600">

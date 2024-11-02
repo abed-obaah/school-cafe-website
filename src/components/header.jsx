@@ -14,30 +14,31 @@ import {
   ChevronDownIcon,
 } from '@heroicons/react/24/outline'
 // import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import Logo from '../assets/snLogo.png';
+import Logo from '../assets/cafe.svg';
 import Avatar from '../assets/avatar.svg';
 import { Link } from 'react-router-dom';
+// import Cafe from '../../assets/cafe.svg';
 
 const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+  { name: 'Home', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
+  { name: 'Community', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
+  { name: 'Featured Schools', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
+  { name: 'Shop', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
+  { name: '', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
 ]
 const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
+  { name: 'Contact Us', href: '#', icon: PlayCircleIcon },
+  // { name: 'Contact sales', href: '#', icon: PhoneIcon },
 ]
 const company = [
   { name: 'About us', href: '#', description: 'Learn more about our company values and mission to empower others' },
-  { name: 'Careers', href: '#', description: 'Looking for you next career opportunity? See all of our open positions' },
-  {
-    name: 'Support',
-    href: '#',
-    description: 'Get in touch with our dedicated support team or reach out on our community forums',
-  },
-  { name: 'Blog', href: '#', description: 'Read our latest announcements and get perspectives from our team' },
+  // { name: 'Careers', href: '#', description: 'Looking for you next career opportunity? See all of our open positions' },
+  // {
+  //   name: 'Support',
+  //   href: '#',
+  //   description: 'Get in touch with our dedicated support team or reach out on our community forums',
+  // },
+  // { name: 'Blog', href: '#', description: 'Read our latest announcements and get perspectives from our team' },
 ]
 
 export default function Example() {
@@ -52,7 +53,7 @@ export default function Example() {
             <img
               alt=""
               src={Logo}
-              className="h-8 w-auto"
+              className="h-10 w-auto"
             />
           </a>
         </div>
@@ -116,7 +117,7 @@ export default function Example() {
               Contact Us
             </Link>
             <Link
-            to="/dashboard"
+            to="/profile"
             >
             <img
               alt=""
@@ -167,18 +168,7 @@ export default function Example() {
                   ))}
                 </div>
                 <div className="space-y-2 py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Features
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Marketplace
-                  </a>
+                
 
                   {company.map((item) => (
                     <a
@@ -195,7 +185,7 @@ export default function Example() {
                     href="#"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Log in
+                    Log out
                   </a>
                 </div>
               </div>

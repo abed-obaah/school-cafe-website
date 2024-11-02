@@ -92,7 +92,7 @@ export default function Example({ userData }) {
       href: '#',
       buttonText: 'View Tasks',
       imageSrc: activity,
-      data: '40%',
+      data: '0%',
       icon: box,
     },
     {
@@ -105,7 +105,7 @@ export default function Example({ userData }) {
       href: '#',
       buttonText: 'Check Leaderboard',
       imageSrc: leader,
-      data: '1,780',
+      data: '0',
       icon: tv,
     },
     {

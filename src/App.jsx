@@ -14,6 +14,7 @@ import Community from './components/Pages/community/index';
 import Dashboard from './components/dashboard/index';
 import Profile from './components/dashboard/profile';
 import Waitlist from './components/waitlist/index';
+import { UserProvider } from './UserContext';
 
 function App() {
   const location = useLocation();  // Hook to get the current route
@@ -22,7 +23,7 @@ function App() {
   const showSearchBarRoutes = ['/m'];
 
   // List of routes where Header, Footer, and AppDownloadSection should be hidden
-  const hideLayoutRoutes = ['/login', '/profile']; // Add '/profile' to hide AppDownloadSection on the profile page
+  const hideLayoutRoutes = ['/login', '/profile','/']; // Add '/profile' to hide AppDownloadSection on the profile page
 
   return (
     <div>
@@ -34,12 +35,12 @@ function App() {
 
       <Routes>
         <Route path="/m" element={<Waitlist />} />
-        <Route path="/" element={<MainBanner />} />
+        <Route path="/a" element={<MainBanner />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/about" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/school" element={<School />} />
-        <Route path="/login" element={<Auth />} />
+        <Route path="/" element={<Auth />} />
         <Route path="/community" element={<Community />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
@@ -56,7 +57,9 @@ function App() {
 export default function AppWrapper() {
   return (
     <Router>
+      <UserProvider>
       <App />
+    </UserProvider>
     </Router>
   );
 }

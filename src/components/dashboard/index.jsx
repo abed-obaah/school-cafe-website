@@ -23,6 +23,7 @@ import tv from '../../assets/tv.svg';
 import crash from '../../assets/crash.svg';
 import { FaTrophy } from 'react-icons/fa';
 import axios from 'axios';
+import { useUserContext } from '../../UserContext';
 
 
 const BASE_URL = "https://schoolcafe.ng/api/users.php";
@@ -96,12 +97,58 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(true); // State to manage loading status
   const [error, setError] = useState(null); // State to manage error
   const location = useLocation();
+  const { user } = useUserContext();
   
   // Create a URLSearchParams object to parse the query parameters
   const queryParams = new URLSearchParams(location.search);
-  const email = queryParams.get('email'); 
+  // const email = queryParams.get('email'); 
+  // const email = queryParams.get('email'); 
 
-  // Function to fetch user data
+  // // Function to fetch user data
+  // const fetchUser = async (email) => {
+  //   try {
+  //     const url = `${BASE_URL}?action=fetchUser&email=${encodeURIComponent(email)}`;
+  //     setLoading(true); // Start loading
+  //     const response = await fetch(url, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+
+  //     const text = await response.text(); // Get the raw text response
+  //     console.log("Raw Response:", text); // Log the raw response to inspect it
+
+  //     if (!response.ok) {
+  //       throw new Error(`Error: ${response.status} ${response.statusText}`);
+  //     }
+
+  //     // Attempt to parse the JSON
+  //     let data;
+  //     try {
+  //       data = JSON.parse(text); // Parse the text as JSON
+  //     } catch (parseError) {
+  //       throw new Error("Received non-JSON response from the server.");
+  //     }
+
+  //     setUserData(data.user); // Store the fetched user data (nested under 'user')
+  //     setError(null); // Clear any previous errors
+  //   } catch (error) {
+  //     console.error("Failed to fetch user data:", error);
+  //     setError(error.message); // Set the error message
+  //   } finally {
+  //     setLoading(false); // Stop loading regardless of success or error
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   // Call fetchUser on page load if email is present
+  //   if (email) {
+  //     fetchUser(email); // Call the fetchUser function with the provided email
+  //   }
+  // }, [email]); // Dependency array, fetch user when email changes
+
+
   const fetchUser = async (email) => {
     try {
       const url = `${BASE_URL}?action=fetchUser&email=${encodeURIComponent(email)}`;
@@ -139,11 +186,11 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    // Call fetchUser on page load if email is present
-    if (email) {
-      fetchUser(email); // Call the fetchUser function with the provided email
+    // Call fetchUser on page load if user.email is present
+    if (user && user.email) {
+      fetchUser(user.email); // Call the fetchUser function with the email from user context
     }
-  }, [email]); // Dependency array, fetch user when email changes
+  }, [user]);
 
   if (loading) {
     return <div>Loading...</div>; // Show loading while fetching data
@@ -251,7 +298,7 @@ const UserProfile = () => {
 
                     {/* Progress Bar */}
                     <div className="relative bg-gray-200 rounded-full h-2 flex-1">
-                      <div className="absolute top-0 left-0 h-full bg-yellow-400 rounded-full" style={{ width: '65%' }}></div>
+                      <div className="absolute top-0 left-0 h-full bg-yellow-400 rounded-full" style={{ width: '5%' }}></div>
                     </div>
 
                     {/* Second Star */}
@@ -262,7 +309,7 @@ const UserProfile = () => {
                   </div>
 
 
-                  <p className="text-sm text-gray-500 px-5">You are 85% away from achieving Amateur</p>
+                  <p className="text-sm text-gray-500 px-5">You are 95% away from achieving Amateur</p>
                 </div>
               </div>
 

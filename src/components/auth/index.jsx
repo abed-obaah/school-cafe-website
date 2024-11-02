@@ -9,10 +9,12 @@ import RightBackground from '../../assets/side.svg'; // Replace with your actual
 import { useNavigate } from 'react-router-dom';
 import woman1 from '../../assets/woman2.webp';
 import woman2 from '../../assets/woman3.jpg';
+import { useUserContext } from '../../UserContext';
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true); // State to switch between Login and Register forms
-  const navigate = useNavigate(); // Navigation hook
+  const { login } = useUserContext(); // Get login function from context
+  const navigate = useNavigate();
 
   return (
     <div className="flex h-screen bg-white justify-center items-center flex-col relative overflow-hidden">
@@ -30,11 +32,11 @@ function Login() {
       <img
         alt="Cafe Logo"
         src={Cafe}
-        className="h-8 w-auto mb-10"
+        className="h-10 w-auto mb-10"
       />
 
       {/* Content Wrapper for Carousel and Forms */}
-      <div className="flex flex-col lg:flex-row w-full justify-center lg:gap-10"> {/* Reduced gap between columns */}
+      <div className="flex flex-col lg:flex-row w-full justify-center lg:gap-2"> {/* Reduced gap between columns */}
         {/* Left side: Image Carousel (Hidden on smaller screens) */}
         <div className="hidden lg:flex w-full lg:w-1/3 items-center justify-center p-5">
           <Carousel
@@ -62,15 +64,16 @@ function Login() {
         </div>
 
         {/* Right side: Login/Register Form */}
-        <div className="w-full lg:w-1/3 flex flex-col justify-center items-center p-5">
-          <div className="text-left mb-6 w-full">
-            <h1 className="text-2xl font-bold">
-              {isLogin ? "Login" : "Create an account"}
-            </h1>
-            <p className="text-sm text-gray-500">
-              {isLogin ? "Please fill in your credentials to login" : "Please fill in details to create an account"}
-            </p>
-          </div>
+        <div className="w-full lg:w-1/3 flex flex-col justify-center items-center">
+                    <div className="text-left mb-6 w-full sm:ml-8">
+              <h1 className="text-2xl font-bold">
+                {isLogin ? "Login" : "Create an account"}
+              </h1>
+              <p className="text-sm text-gray-500">
+                {isLogin ? "Please enter your email to login to your account" : "Please fill in details to create an account"}
+              </p>
+            </div>
+
           <div className="flex justify-around w-full mb-6">
             <button
               className={`text-lg px-4 py-2 border-b-2 ${
@@ -101,6 +104,7 @@ function Login() {
 
 // Login Form
 const LoginForm = () => {
+  const { login } = useUserContext();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -108,7 +112,7 @@ const LoginForm = () => {
   
     const email = e.target.email.value;
     const password = e.target.password.value;
-  
+
     const loginPromise = fetch("https://schoolcafe.ng/api/users.php?action=login", {
       method: "POST",
       headers: {
@@ -116,7 +120,7 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ email, password }),
     });
-  
+
     toast.promise(
       loginPromise,
       {
@@ -129,12 +133,13 @@ const LoginForm = () => {
         },
       }
     );
-  
+
     try {
       const response = await loginPromise;
       const data = await response.json();
   
       if (response.ok && data.message === "Login successful.") {
+        login({ email }); // Use the login function to set user data
         toast.success("Login successful!", {
           onClose: () => {
             navigate(`/dashboard?email=${encodeURIComponent(email)}`);
@@ -151,7 +156,7 @@ const LoginForm = () => {
 
   return (
     <form className="flex flex-col w-full max-w-md" onSubmit={handleLogin}>
-      <div className="mb-4">
+      <div className="mb-8">
         <input
           type="email"
           name="email"
@@ -160,7 +165,7 @@ const LoginForm = () => {
           required
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-8">
         <input
           type="password"
           name="password"
@@ -169,7 +174,7 @@ const LoginForm = () => {
           required
         />
       </div>
-      <a href="#" className="text-sm text-[#1D7BC7] mb-6 text-left">
+      <a href="#" className="text-sm text-[#1D7BC7] mb-8 text-left">
         Forgot Password?
       </a>
       <button
@@ -230,7 +235,7 @@ const RegisterForm = () => {
 
   return (
     <form className="flex flex-col w-full max-w-md" onSubmit={handleRegister}>
-      <div className="mb-4">
+      <div className="mb-8">
         <input
           type="text"
           name="username"
@@ -239,7 +244,7 @@ const RegisterForm = () => {
           required
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-8">
         <input
           type="email"
           name="email"
@@ -248,7 +253,7 @@ const RegisterForm = () => {
           required
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-8">
         <input
           type="text"
           name="referralCode"
@@ -256,7 +261,7 @@ const RegisterForm = () => {
           className="w-full p-3 border border-[#B3B3B33B] bg-[#B3B3B33B] outline-none"
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-8">
         <input
           type="password"
           name="password"
@@ -265,7 +270,7 @@ const RegisterForm = () => {
           required
         />
       </div>
-      <div className="mb-3 flex items-center">
+      <div className="mb-8 flex items-center">
         <input
           defaultChecked
           type="checkbox"
