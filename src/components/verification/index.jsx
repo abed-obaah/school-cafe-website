@@ -297,7 +297,7 @@ console.log(user)
                 </Dialog>
             </header> */}
 
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center justify-center px-4 ">
     <div className="max-w-3xl w-full mx-auto mb-40">
       {/* Back to Dashboard Link */}
                 <div className="mb-10 mt-10">
@@ -417,7 +417,7 @@ console.log(user)
             </div>
       </div>
     </div>
-  </div>
+                </div>
         </div>
     );
 }

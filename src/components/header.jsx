@@ -41,7 +41,7 @@ export default function Example() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    alert("clearing storage");
+    // alert("clearing storage");
         logout(); // Clear user data and remove from localStorage
     navigate('/'); // Navigate to the login page after logout
   };

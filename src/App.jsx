@@ -17,27 +17,21 @@ import Waitlist from './components/waitlist/index';
 import Board from './components/Board/leaderBoard'
 import Verification from './components/verification/index'
 import { UserProvider } from './UserContext';
-
+import PrivateRoute from './PrivateRoute';  // Import the PrivateRoute component
 
 function App() {
-  const location = useLocation();  // Hook to get the current route
+  const location = useLocation();
 
-  // List of routes where SearchBar should be displayed
   const showSearchBarRoutes = ['/m'];
-
-  // List of routes where Header, Footer, and AppDownloadSection should be hidden
-  const hideLayoutRoutes = ['/login', '/profile','/','login/']; // Add '/profile' to hide AppDownloadSection on the profile page
+  const hideLayoutRoutes = ['/login', '/profile', '/', 'login/'];
 
   return (
     <div>
-      {/* Conditionally render Header, SearchBar, and Footer based on current route */}
       {!hideLayoutRoutes.includes(location.pathname) && <Header />}
-
-      {/* Conditionally render SearchBar based on the current route */}
       {!hideLayoutRoutes.includes(location.pathname) && showSearchBarRoutes.includes(location.pathname) && <SearchBar />}
 
       <Routes>
-        
+        {/* Public Routes */}
         <Route path="/m" element={<Waitlist />} />
         <Route path="/a" element={<MainBanner />} />
         <Route path="/contact" element={<ContactSection />} />
@@ -45,15 +39,50 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/school" element={<School />} />
         <Route path="/" element={<Auth />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/waitlist" element={<Waitlist />} />
-        <Route path="/leaderboard" element={<Board />} />
-        <Route path="/verification" element={<Verification />} />
+
+        {/* Private Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <PrivateRoute>
+              <Community />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/leaderboard"
+          element={
+            <PrivateRoute>
+              <Board />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/verification"
+          element={
+            <PrivateRoute>
+              <Verification />
+            </PrivateRoute>
+          }
+        />
       </Routes>
 
-      {/* Conditionally render AppDownloadSection and Footer based on current route */}
       {!hideLayoutRoutes.includes(location.pathname) && <AppDownloadSection />}
       {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
     </div>
@@ -64,8 +93,8 @@ export default function AppWrapper() {
   return (
     <Router>
       <UserProvider>
-      <App />
-    </UserProvider>
+        <App />
+      </UserProvider>
     </Router>
   );
 }
