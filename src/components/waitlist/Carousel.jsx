@@ -1,7 +1,7 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation,Autoplay } from 'swiper/modules'; // Correct way to import Navigation
-import 'swiper/css';
-import 'swiper/css/navigation'; // Import Swiper navigation module
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Navigation,Autoplay } from 'swiper/modules'; // Correct way to import Navigation
+// import 'swiper/css';
+// import 'swiper/css/navigation'; // Import Swiper navigation module
 import smiley from '../../assets/simley.jpg'
 import smiley2 from '../../assets/smiley2.jpg'
 import smiley3 from '../../assets/smiley3.jpg'

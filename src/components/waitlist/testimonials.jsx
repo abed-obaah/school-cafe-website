@@ -1,7 +1,7 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules'; // Correct way to import Navigation
-import 'swiper/css';
-import 'swiper/css/navigation';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Navigation, Autoplay } from 'swiper/modules'; // Correct way to import Navigation
+// import 'swiper/css';
+// import 'swiper/css/navigation';
 import arrow from '../../assets/arrow-circle-left.svg';
 
 const posts = [

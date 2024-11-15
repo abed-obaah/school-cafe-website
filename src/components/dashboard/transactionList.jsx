@@ -8,18 +8,15 @@ const TransactionList = ({ userData }) => {
 
   useEffect(() => {
     if (userData) {
-      console.log('userData:', userData); // Check if userData is defined
-      console.log(userData.id); // Log user ID if userData is defined
-
       const fetchTransactions = async () => {
         try {
-          const userId = userData.id; // Use the dynamic user ID from userData
-          const response = await fetch(`https://schoolcafe.ng/api/users.php?action=fetchTransactions&user_id=${userId}`);
+          const userId = userData.id;
+          const response = await fetch(
+            `https://schoolcafe.ng/api/users.php?action=fetchTransactions&user_id=${userId}`
+          );
           const data = await response.json();
-          console.log("trans:",data)
-          
           if (data.transactions && Array.isArray(data.transactions)) {
-            setPaymentData(data.transactions); // Use the transactions array
+            setPaymentData(data.transactions);
           } else {
             console.error("Invalid data format:", data);
           }
@@ -30,37 +27,39 @@ const TransactionList = ({ userData }) => {
 
       fetchTransactions();
     } else {
-      console.warn('userData is not defined'); // Warning message
+      console.warn('userData is not defined');
     }
-  }, [userData]); // Run effect whenever userData changes
+  }, [userData]);
 
-  // Determine how many items to display
   const displayedPayments = showAll ? paymentData : paymentData.slice(0, 7);
 
   return (
     <div className="bg-white">
-      <main className="mx-auto max-w-2xl px-4 py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="max-w-xl mb-10">
-          <h1 className="text-3xl font-bold tracking-tight text-[#B3B3B3]">Transaction List</h1>
+      <main className="mx-auto max-w-full px-4 py-12 sm:px-6 lg:px-8">
+        <div className="max-w-xl mb-8 mx-auto text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#B3B3B3]">Transaction List</h1>
         </div>
 
-        <div>
+        <div className="space-y-6">
           {displayedPayments.map((payment, index) => (
-            <div key={index} className="flex justify-center mt-5">
-              <div className="rounded-[36px] p-0 max-w-7xl w-full md:w-4/4 border-2 border-gray-300">
-                <div className="p-6">
-                  <div className="flex items-center justify-between">
+            <div key={index} className="flex justify-center">
+              <div className="rounded-2xl w-full max-w-full sm:max-w-lg md:max-w-2xl lg:max-w-4xl border-2 border-gray-300">
+                <div className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                     {/* Left Side: Icon + Text */}
-                    <div className="flex items-center">
+                    <div className="flex items-start sm:items-center">
                       <img
                         src={payment.transaction_type === "credit" ? incoming : outgoing}
                         alt={`${payment.transaction_type} icon`}
-                        className="w-10 h-10 mr-4"
+                        className="w-8 h-8 sm:w-10 sm:h-10 mr-3 sm:mr-4"
                       />
                       <div>
-                        <span className="text-xs text-[#B3B3B3]">{new Date(payment.created_at).toLocaleString()}</span>
-                        {/* <h2 className="text-lg font-semibold mb-2">{`Payment of NGN${payment.amount}`}</h2> */}
-                        <h2 className="text-lg font-semibold mb-2">{payment.title} {payment.amount}</h2>
+                        <span className="text-xs text-[#B3B3B3]">
+                          {new Date(payment.created_at).toLocaleString()}
+                        </span>
+                        <h2 className="text-sm sm:text-lg font-semibold mb-1 sm:mb-2">
+                          {payment.title} {payment.amount}
+                        </h2>
                       </div>
                     </div>
 
@@ -82,14 +81,13 @@ const TransactionList = ({ userData }) => {
 
         {/* Show All link - only displayed if paymentData has more than 7 items */}
         {paymentData.length > 7 && (
-          <div className="mt-5 flex justify-start">
-            <a
-              href="#"
+          <div className="mt-5 flex justify-center">
+            <button
               className="text-sm text-blue-600"
               onClick={() => setShowAll(!showAll)}
             >
               {showAll ? "Show Less" : "Show All"}
-            </a>
+            </button>
           </div>
         )}
       </main>

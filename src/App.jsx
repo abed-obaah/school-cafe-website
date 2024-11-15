@@ -9,12 +9,15 @@ import AppDownloadSection from './components/AppDownloadSection';
 import About from './components/Pages/about';
 import Privacy from './components/Pages/privacy';
 import School from './components/Pages/featuredSchoolPage';
-import Auth from './components/auth';
+import Auth from './components/auth/index';
 import Community from './components/Pages/community/index';
 import Dashboard from './components/dashboard/index';
 import Profile from './components/dashboard/profile';
 import Waitlist from './components/waitlist/index';
+import Board from './components/Board/leaderBoard'
+import Verification from './components/verification/index'
 import { UserProvider } from './UserContext';
+
 
 function App() {
   const location = useLocation();  // Hook to get the current route
@@ -23,7 +26,7 @@ function App() {
   const showSearchBarRoutes = ['/m'];
 
   // List of routes where Header, Footer, and AppDownloadSection should be hidden
-  const hideLayoutRoutes = ['/login', '/profile','/']; // Add '/profile' to hide AppDownloadSection on the profile page
+  const hideLayoutRoutes = ['/login', '/profile','/','login/']; // Add '/profile' to hide AppDownloadSection on the profile page
 
   return (
     <div>
@@ -34,6 +37,7 @@ function App() {
       {!hideLayoutRoutes.includes(location.pathname) && showSearchBarRoutes.includes(location.pathname) && <SearchBar />}
 
       <Routes>
+        
         <Route path="/m" element={<Waitlist />} />
         <Route path="/a" element={<MainBanner />} />
         <Route path="/contact" element={<ContactSection />} />
@@ -45,6 +49,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/waitlist" element={<Waitlist />} />
+        <Route path="/leaderboard" element={<Board />} />
+        <Route path="/verification" element={<Verification />} />
       </Routes>
 
       {/* Conditionally render AppDownloadSection and Footer based on current route */}

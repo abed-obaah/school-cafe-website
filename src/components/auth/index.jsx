@@ -64,15 +64,17 @@ function Login() {
         </div>
 
         {/* Right side: Login/Register Form */}
-        <div className="w-full lg:w-1/3 flex flex-col justify-center items-center">
-                    <div className="text-left mb-6 w-full sm:ml-8">
-              <h1 className="text-2xl font-bold">
-                {isLogin ? "Login" : "Create an account"}
-              </h1>
-              <p className="text-sm text-gray-500">
-                {isLogin ? "Please enter your email to login to your account" : "Please fill in details to create an account"}
-              </p>
-            </div>
+        <div className="w-full lg:w-1/3 flex flex-col justify-center items-center sm:mx-4"> {/* Add margin on smaller screens */}
+          <div className="text-left mb-6 w-full sm:ml-8">
+            <h1 className="text-2xl font-bold text-center sm:text-left">
+              {isLogin ? "Login" : "Create an account"}
+            </h1>
+            <p className="text-sm text-gray-500 text-center sm:text-left">
+                  {isLogin ? "Please enter your email to login to your account" : "Please fill in details to create an account"}
+                </p>
+
+
+          </div>
 
           <div className="flex justify-around w-full mb-6">
             <button
@@ -104,15 +106,17 @@ function Login() {
 
 // Login Form
 const LoginForm = () => {
-  const { login } = useUserContext();
+  // const { login } = useUserContext();
   const navigate = useNavigate();
+
+  const { login } = useUserContext();
 
   const handleLogin = async (e) => {
     e.preventDefault();
   
     const email = e.target.email.value;
     const password = e.target.password.value;
-
+  
     const loginPromise = fetch("https://schoolcafe.ng/api/users.php?action=login", {
       method: "POST",
       headers: {
@@ -120,7 +124,7 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ email, password }),
     });
-
+  
     toast.promise(
       loginPromise,
       {
@@ -133,29 +137,30 @@ const LoginForm = () => {
         },
       }
     );
-
+  
     try {
       const response = await loginPromise;
       const data = await response.json();
+      console.log("Login response:", data);
   
       if (response.ok && data.message === "Login successful.") {
-        login({ email }); // Use the login function to set user data
+        login(data.user); // Persist user login data
         toast.success("Login successful!", {
           onClose: () => {
-            navigate(`/dashboard?email=${encodeURIComponent(email)}`);
+            navigate(`/dashboard`);
           },
         });
       } else {
         throw new Error(data.error || 'Invalid login attempt.');
       }
-  
     } catch (error) {
       toast.error(`Login failed: ${error.message}`);
     }
   };
+  
 
   return (
-    <form className="flex flex-col w-full max-w-md" onSubmit={handleLogin}>
+    <form className="flex flex-col w-full max-w-md px-4 sm:px-0" onSubmit={handleLogin}>
       <div className="mb-8">
         <input
           type="email"
@@ -234,7 +239,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <form className="flex flex-col w-full max-w-md" onSubmit={handleRegister}>
+    <form className="flex flex-col w-full max-w-md px-4 sm:px-0" onSubmit={handleRegister}>
       <div className="mb-8">
         <input
           type="text"
@@ -269,18 +274,6 @@ const RegisterForm = () => {
           className="w-full p-3 border border-[#B3B3B33B] bg-[#B3B3B33B] outline-none"
           required
         />
-      </div>
-      <div className="mb-8 flex items-center">
-        <input
-          defaultChecked
-          type="checkbox"
-          name="terms"
-          required
-          className="mr-2"
-        />
-        <div className="ml-2 text-xs text-gray-400">
-          Accept terms and conditions.
-        </div>
       </div>
       <button
         type="submit"
