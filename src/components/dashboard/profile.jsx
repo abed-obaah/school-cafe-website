@@ -185,7 +185,7 @@ export default function Example() {
             </header>
 
             <div className="flex flex-col items-center justify-center">
-    <div className="max-w-3xl w-full mx-auto">
+                    <div className="max-w-3xl w-full mx-auto">
       {/* Back to Dashboard Link */}
                 <div className="mb-4">
                     <Link to={'/dashboard'}>

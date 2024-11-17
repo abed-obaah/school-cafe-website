@@ -1,73 +1,18 @@
-import { FaChartBar, FaTasks } from 'react-icons/fa' // Importing icons
-import { Fragment, useState } from 'react'
-import earning from '../../assets/earning.svg'
-import lines from '../../assets/lines.svg'
-import leader from '../../assets/leader.svg'
-import refer from '../../assets/refer.svg'
-import activity from '../../assets/activity.svg'
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import earning from '../../assets/earning.svg';
+import leader from '../../assets/leader.svg';
+import refer from '../../assets/refer.svg';
+import activity from '../../assets/activity.svg';
 import refresh from '../../assets/refresh.svg';
 import Withdraw from '../../assets/withdraw.svg';
 import box from '../../assets/message.svg';
 import tv from '../../assets/tv.svg';
 import crash from '../../assets/crash.svg';
-import { FaTrophy } from 'react-icons/fa';
-
-// const orders = [
-//   {
-//     id: 1,
-//     date: 'July 12, 2021',
-//     status: 'Total Earning',
-//     name1: 'Easily',
-//     name2: 'Withdraw',
-//     name3: 'Your Earnings',
-//     href: '#',
-//     buttonText: 'Withdraw',
-//     imageSrc: earning,
-//     data: userData.referrals_count,
-//     icon: Withdraw, 
-//   },
-//   {
-//     id: 2,
-//     date: 'June 21, 2021',
-//     status: 'Daily Activity',
-//     name1: 'Perform Daily',
-//     name2: 'Tasks & Earn',
-//     name3: 'More Money',
-//     href: '#',
-//     buttonText: 'View Tasks',
-//     imageSrc: activity,
-//     data: '40%',
-//     icon: box,
-//   },
-//   {
-//     id: 3,
-//     date: 'June 6, 2021',
-//     status: 'Leadership Board',
-//     name1: 'See Your',
-//     name2: 'Position On',
-//     name3: 'Leader Board',
-//     href: '#',
-//     buttonText: 'Check Leaderboard',
-//     imageSrc: leader,
-//     data: '1,780',
-//     icon: tv,
-//   },
-//   {
-//     id: 4,
-//     date: 'May 24, 2021',
-//     status: 'Referrals',
-//     name1: 'Refer Your',
-//     name2: 'Friends &',
-//     name3: 'Earn Money',
-//     href: '#',
-//     buttonText: 'Refer Now',
-//     imageSrc: refer,
-//     data: '10',
-//     icon: refer,
-//   },
-// ]
 
 export default function Example({ userData }) {
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
+
   const orders = [
     {
       id: 1,
@@ -79,8 +24,8 @@ export default function Example({ userData }) {
       href: '#',
       buttonText: 'Withdraw',
       imageSrc: earning,
-       data: `NGN ${userData.referral_reward}`,
-      icon: Withdraw, 
+      data: `NGN ${userData.referral_reward}`,
+      icon: Withdraw,
     },
     {
       id: 2,
@@ -121,7 +66,8 @@ export default function Example({ userData }) {
       data: userData.referrals_count,
       icon: refer,
     },
-  ]
+  ];
+
   return (
     <div className="bg-white">
       <main className="mx-auto max-w-2xl px-4 py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -158,28 +104,31 @@ export default function Example({ userData }) {
                     {order.data}
                     {/* Conditional Icon or Progress Bar */}
                     {order.buttonText === 'View Tasks' && (
-                    <div className="w-[3rem] bg-gray-200 rounded-full h-1.5 mt-2">
-                    <div
-                      className="bg-[#1D7BC7] h-1.5 rounded-full"
-                      style={{ width: `${order.data}` }}  // Ensure it's a percentage
-                    />
-                  </div>
-                  
-                  )}
+                      <div className="w-[3rem] bg-gray-200 rounded-full h-1.5 mt-2">
+                        <div
+                          className="bg-[#1D7BC7] h-1.5 rounded-full"
+                          style={{ width: `${order.data}` }}  // Ensure it's a percentage
+                        />
+                      </div>
+                    )}
                     {order.buttonText === 'Check Leaderboard' && (
                       <img
-                      src={crash}
-                      alt="Button Icon"
-                      className="w-4 h-5 mt-3"
-                    />
+                        src={crash}
+                        alt="Button Icon"
+                        className="w-4 h-5 mt-3"
+                      />
                     )}
                   </div>
 
-                
-
                   <button
                     className="mt-4 w-full flex items-center justify-center rounded-md bg-[#1D7BC7] text-white py-2 hover:bg-blue-700"
-                    onClick={() => console.log(`${order.buttonText} clicked`)}
+                    onClick={() => {
+                      if (order.buttonText === 'Check Leaderboard') {
+                        navigate('/leaderboard'); // Navigate to /leaderboard
+                      } else {
+                        console.log(`${order.buttonText} clicked`);
+                      }
+                    }}
                   >
                     <img
                       src={order.icon}
@@ -195,5 +144,5 @@ export default function Example({ userData }) {
         </div>
       </main>
     </div>
-  )
+  );
 }

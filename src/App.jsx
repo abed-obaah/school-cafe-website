@@ -16,14 +16,16 @@ import Profile from './components/dashboard/profile';
 import Waitlist from './components/waitlist/index';
 import Board from './components/Board/leaderBoard'
 import Verification from './components/verification/index'
+import Admin from "./components/admin/index"
 import { UserProvider } from './UserContext';
 import PrivateRoute from './PrivateRoute';  // Import the PrivateRoute component
+import PublicRoute from "./PublicRoute";
 
 function App() {
   const location = useLocation();
 
   const showSearchBarRoutes = ['/m'];
-  const hideLayoutRoutes = ['/login', '/profile', '/', 'login/'];
+  const hideLayoutRoutes = ['/login', '/profile', '/', 'login/', '/register/',"/register",'/admin'];
 
   return (
     <div>
@@ -32,13 +34,21 @@ function App() {
 
       <Routes>
         {/* Public Routes */}
-        <Route path="/m" element={<Waitlist />} />
+        <Route path="/waitlist" element={<Waitlist />} />
         <Route path="/a" element={<MainBanner />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/about" element={<About />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/school" element={<School />} />
-        <Route path="/" element={<Auth />} />
+        {/* <Route path="/" element={<Auth />} /> */}
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Auth />
+            </PublicRoute>
+          }
+        />
 
         {/* Private Routes */}
         <Route
@@ -78,6 +88,14 @@ function App() {
           element={
             <PrivateRoute>
               <Verification />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <Admin />
             </PrivateRoute>
           }
         />

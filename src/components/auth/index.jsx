@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import { toast, ToastContainer } from "react-toastify"; // Import toast
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -10,11 +10,20 @@ import { useNavigate } from 'react-router-dom';
 import woman1 from '../../assets/woman2.webp';
 import woman2 from '../../assets/woman3.jpg';
 import { useUserContext } from '../../UserContext';
+import { useLocation } from "react-router-dom";
+import ForgotPasswordModal from "./ForgotPasswordParent";
+// import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+
+
+
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true); // State to switch between Login and Register forms
   const { login } = useUserContext(); // Get login function from context
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="flex h-screen bg-white justify-center items-center flex-col relative overflow-hidden">
@@ -117,49 +126,54 @@ const LoginForm = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
   
-    const loginPromise = fetch("https://schoolcafe.ng/api/users.php?action=login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-  
-    toast.promise(
-      loginPromise,
-      {
-        pending: "Logging in...",
-        success: "Welcome back!",
-        error: {
-          render({ data }) {
-            return `Login failed: ${data.message || 'Unknown error'}`;
-          },
-        },
-      }
-    );
-  
     try {
-      const response = await loginPromise;
+      // Display a loading toast
+      const loadingToastId = toast.loading("Logging in...");
+  
+      // Perform the API call
+      const response = await fetch("https://schoolcafe.ng/api/users.php?action=login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
       const data = await response.json();
-      console.log("Login response:", data);
   
       if (response.ok && data.message === "Login successful.") {
-        login(data.user); // Persist user login data
-        toast.success("Login successful!", {
-          onClose: () => {
-            navigate(`/dashboard`);
-          },
+        toast.update(loadingToastId, {
+          render: "Welcome back!",
+          type: "success",
+          isLoading: false,
+          autoClose: 2000,
         });
+  
+        // Delay navigation to allow the toast to show
+        setTimeout(() => {
+          login(data.user); // Persist user login data
+          navigate(`/dashboard`);
+        }, 500);
       } else {
-        throw new Error(data.error || 'Invalid login attempt.');
+        throw new Error(data.error || "Invalid login attempt.");
       }
     } catch (error) {
       toast.error(`Login failed: ${error.message}`);
     }
   };
   
+  
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prevState) => !prevState); // Toggle the password visibility state
+  };
+  
 
   return (
+    
     <form className="flex flex-col w-full max-w-md px-4 sm:px-0" onSubmit={handleLogin}>
       <div className="mb-8">
         <input
@@ -170,18 +184,36 @@ const LoginForm = () => {
           required
         />
       </div>
-      <div className="mb-8">
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="w-full p-3 border border-[#B3B3B33B] bg-[#B3B3B33B] outline-none"
-          required
-        />
+      <div className="mb-8 relative">
+      <input
+        type={isPasswordVisible ? "text" : "password"} // Toggle between text and password type
+        name="password"
+        placeholder="Password"
+        className="w-full p-3 border border-[#B3B3B33B] bg-[#B3B3B33B] outline-none"
+        required
+      />
+      <div
+        className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+        onClick={togglePasswordVisibility}
+      >
+        {isPasswordVisible ? <FaEyeSlash /> : <FaEye />} {/* Toggle icon */}
       </div>
+    </div>
       <a href="#" className="text-sm text-[#1D7BC7] mb-8 text-left">
         Forgot Password?
       </a>
+       {/* <a
+        href="#"
+        className="text-sm text-[#1D7BC7] mb-8 text-left"
+        onClick={(e) => {
+          e.preventDefault(); // Prevent default link behavior
+          setIsModalOpen(true); // Open the modal
+        }}
+      >
+        Forgot Password?
+      </a> */}
+            {/* Modal Component */}
+            <ForgotPasswordModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <button
         type="submit"
         className="w-full bg-[#1D7BC7] text-white p-3 rounded-md hover:bg-blue-600 transition duration-200"
@@ -194,49 +226,102 @@ const LoginForm = () => {
 
 // Register Form
 const RegisterForm = () => {
+  const location = useLocation();
+  const [referralCode, setReferralCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const code = queryParams.get("refID");
+    if (code) {
+      setReferralCode(code);
+    }
+  }, [location.search]);
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+
+
+
   const handleRegister = async (e) => {
     e.preventDefault();
+  
     const username = e.target.username.value;
     const email = e.target.email.value;
     const referrer_code = e.target.referralCode.value;
     const password = e.target.password.value;
-
-    const promise = fetch("https://schoolcafe.ng/api/users.php?action=register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, email, password, referrer_code }),
-    });
-
-    toast.promise(
-      promise,
-      {
-        pending: 'Creating account...',
-        success: {
-          render() {
-            return `Account created successfully!`;
-          },
-        },
-        error: {
-          render({ data }) {
-            return `Registration failed: ${data.message || 'Unknown error'}`;
-          },
-        },
-      }
-    );
-
+    const confirmPassword = e.target.confirmPassword.value; // Get confirm password value
+  
+    // Check if the password and confirm password match
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return; // Stop execution if the passwords don't match
+    }
+  
+    // Check if the referral code is empty
+    if (!referrer_code) {
+      toast.error("Referral code is required.");
+      return; // Stop execution if the referral code is missing
+    }
+  
     try {
-      const response = await promise;
+      // Send the request to the server
+      const response = await fetch(
+        "https://schoolcafe.ng/api/users.php?action=register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password, referrer_code }),
+        }
+      );
+  
       const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message);
+  
+      if (data.message === "User registered successfully.") {
+        // Display success toast only if the success message matches
+        toast.success("Account created successfully!");
+        console.log("User registered:", data);
+  
+        // Add a 1-second delay before refreshing the page
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000); // 1000 ms = 1 second
+      } else if (data.error) {
+        // Display error message returned from the API
+        toast.error(data.error);
+        console.error("Registration failed:", data.error);
+      } else {
+        // Handle unexpected response structure
+        toast.error("An unexpected error occurred. Please try again.");
+        console.error("Unexpected response:", data);
       }
     } catch (error) {
-      console.error(error);
+      // Handle network or unexpected errors
+      toast.error(`An error occurred: ${error.message}`);
+      console.error("Unexpected error:", error);
     }
   };
+  
+  
+  
+  
+  
+  
 
   return (
     <form className="flex flex-col w-full max-w-md px-4 sm:px-0" onSubmit={handleRegister}>
@@ -259,18 +344,50 @@ const RegisterForm = () => {
         />
       </div>
       <div className="mb-8">
-        <input
+      
+         <input
           type="text"
           name="referralCode"
           placeholder="Referral Code"
           className="w-full p-3 border border-[#B3B3B33B] bg-[#B3B3B33B] outline-none"
+          value={referralCode} // Set the referral code as the input value
+          onChange={(e) => setReferralCode(e.target.value)} // Allow users to modify it if needed
         />
+        <span className="flex select-none items-center pl-0 text-gray-500 sm:text-sm">Please input the Referral url or username here.</span>
       </div>
-      <div className="mb-8">
+      {/* <div className="mb-8">
         <input
           type="password"
           name="password"
           placeholder="Password"
+          className="w-full p-3 border border-[#B3B3B33B] bg-[#B3B3B33B] outline-none"
+          required
+        />
+      </div> */}
+      <div className="mb-8 relative">
+        <input
+          type={passwordVisible ? "text" : "password"}
+          name="password"
+          value={password}
+          onChange={handlePasswordChange}
+          placeholder="Password"
+          className="w-full p-3 border border-[#B3B3B33B] bg-[#B3B3B33B] outline-none"
+          required
+        />
+        <span
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+          onClick={togglePasswordVisibility}
+        >
+          {passwordVisible ? <FaEyeSlash /> : <FaEye />} {/* Eye icon to toggle visibility */}
+        </span>
+      </div>
+      <div className="mb-8">
+        <input
+          type={passwordVisible ? "text" : "password"}
+          name="confirmPassword"
+          value={confirmPassword}
+          onChange={handleConfirmPasswordChange}
+          placeholder="Confirm Password"
           className="w-full p-3 border border-[#B3B3B33B] bg-[#B3B3B33B] outline-none"
           required
         />

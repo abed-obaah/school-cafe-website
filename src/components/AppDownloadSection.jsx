@@ -14,17 +14,18 @@ export default function Example() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Get School Cafe App</h2>
           <p className="text-gray-700 mb-6 text-2xl">Download App to get Updates on Student & NYSC News</p>
           
-          <div className="flex justify-center lg:justify-start gap-4 mb-6">
-            <button className="bg-black text-white px-16 py-3 rounded-lg flex items-center">
-              <img src={playstore} alt="Play Store" className="h-5 mr-2" />
-              Get on Play Store
-            </button>
-            <button className="bg-black text-white px-16 py-3 rounded-lg flex items-center">
-              <img src={appstore} alt="App Store" className="h-5 mr-2" />
-              Get on App Store
-            </button>
-          </div>
-          <p className="text-gray-500">Join 1M + School Cafe Subscribers</p>
+          <div className="flex flex-col items-center lg:flex-row lg:justify-start gap-4 mb-6">
+                <button className="bg-black text-white px-8 py-3 rounded-lg flex items-center w-full lg:w-auto justify-center">
+                  <img src={playstore} alt="Play Store" className="h-5 mr-2" />
+                  Get on Play Store
+                </button>
+                <button className="bg-black text-white px-8 py-3 rounded-lg flex items-center w-full lg:w-auto justify-center">
+                  <img src={appstore} alt="App Store" className="h-5 mr-2" />
+                  Get on App Store
+                </button>
+              </div>
+              <p className="text-gray-500 text-center lg:text-left">Join 1M+ School Cafe Subscribers</p>
+
         </div>
 
         {/* Image Section */}

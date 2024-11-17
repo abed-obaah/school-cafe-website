@@ -121,6 +121,8 @@ const UserProfile = () => {
     status: "",
     progress: 0
   });
+
+  // https://schoolcafe.ng/register/?refID=
   
   useEffect(() => {
     console.log('email:',user?.email)
@@ -287,21 +289,40 @@ const UserProfile = () => {
   if (error) {
     return <div>Error: {error}</div>; // Display error if there's an issue
   }
+  // https://schoolcafe.ng/register/?refID=
 
 
+  // const handleCopy = () => {
+  //   // Copy the referral code to the clipboard
+  //   navigator.clipboard.writeText(userData.referral_code)
+  //     .then(() => {
+  //       // Optionally, you can show a success message or toast notification
+  //       alert('Referral code copied to clipboard!');
+  //     })
+  //     .catch((err) => {
+  //       console.error('Failed to copy: ', err);
+  //       alert('Failed to copy referral code. Please try again.');
+  //     });
+  // };
 
   const handleCopy = () => {
-    // Copy the referral code to the clipboard
-    navigator.clipboard.writeText(userData.referral_code)
+    // Construct the full referral URL with the code
+    // const referralUrl = `https://schoolcafe.ng/register/?refID=${userData.referral_code}`;
+    // const referralUrl = `https://schoolcafe.ng/register/?refID=${userData.referral_code}`;
+    const referralUrl = `https://schoolcafe.ng/?refID=${userData.referral_code}`;
+  
+    // Copy the referral URL to the clipboard
+    navigator.clipboard.writeText(referralUrl)
       .then(() => {
         // Optionally, you can show a success message or toast notification
-        alert('Referral code copied to clipboard!');
+        alert('Referral link copied to clipboard!');
       })
       .catch((err) => {
         console.error('Failed to copy: ', err);
-        alert('Failed to copy referral code. Please try again.');
+        alert('Failed to copy referral link. Please try again.');
       });
   };
+  
 
   
 
@@ -480,7 +501,7 @@ const UserProfile = () => {
                                       <div className="text-3xl font-semibold text-white flex items-center">
                                         {order.data}
                                         {/* Conditional Icon or Progress Bar */}
-                                        {order.buttonText === 'Check Leaderboard' && (
+                                        {order.buttonText === 'Check Leader board' && (
                                           <img
                                             src={crash}
                                             alt="Button Icon"
