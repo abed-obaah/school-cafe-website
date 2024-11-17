@@ -42,7 +42,7 @@ function App() {
         <Route path="/school" element={<School />} />
         {/* <Route path="/" element={<Auth />} /> */}
         <Route
-          path="/"
+          path="/ms"
           element={
             <PublicRoute>
               <Auth />
@@ -92,11 +92,11 @@ function App() {
           }
         />
         <Route
-          path="/admin"
+          path="/"
           element={
-            <PrivateRoute>
+            <PublicRoute>
               <Admin />
-            </PrivateRoute>
+            </PublicRoute>
           }
         />
       </Routes>
