@@ -1,3 +1,76 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.footer-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2388d7;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+  
+  .footer-nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    flex: 1;
+  }
+  
+  .footer-nav a:hover {
+    color: #d1e9ff;
+  }
+  
+  .footer-nav a i {
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .sticky-ads {
+    position: fixed;
+    bottom: 70px;
+    left: 0;
+    width: 100%;
+    min-height: 70px;
+    padding: 5px 0;
+    box-shadow: 0 -6px 18px 0 rgba(9, 32, 76, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fefefe;
+    z-index: 1010;
+  }
+  
+  .sticky-ads-close {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px 0 0;
+    position: absolute;
+    right: 0;
+    top: -30px;
+    background-color: #fefefe;
+    box-shadow: 0 -6px 18px 0 rgba(9, 32, 76, 0.08);
+  }
+  
+  .sticky-ads .sticky-ads-close svg {
+    width: 22px;
+    height: 22px;
+    fill: #000;
+  }
+  
+  .hollow-disc {
+    list-style-type: circle; /* Makes the bullet points hollow circles */
+  }

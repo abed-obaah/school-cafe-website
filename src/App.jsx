@@ -7,11 +7,20 @@ import ContactSection from './components/Pages/ContactSection';
 import Footer from './components/Footer';
 import AppDownloadSection from './components/AppDownloadSection';
 import About from './components/Pages/about';
+import Mission from './components/Pages/Ourmission';
+import Editorial from './components/Pages/editorial';
+import Feedbacks from './components/Pages/feedbacks';
+import FeatureSchool from './components/Pages/featuredSchoolPage'
+import SchoolCompare from './components/Pages/compareSchools'
 import Privacy from './components/Pages/privacy';
 import School from './components/Pages/featuredSchoolPage';
+import Schools from './components/Pages/schools';
+import ComingSoon from './components/Pages/comingSoon';
 import Auth from './components/auth/index';
 import Community from './components/Pages/community/index';
 import Dashboard from './components/dashboard/index';
+import Winner from './components/Pages/winnerPage';
+import RafflePage from './components/Pages/RafflePage';
 import Profile from './components/dashboard/profile';
 import Waitlist from './components/waitlist/index';
 import Board from './components/Board/leaderBoard'
@@ -25,7 +34,7 @@ function App() {
   const location = useLocation();
 
   const showSearchBarRoutes = ['/m'];
-  const hideLayoutRoutes = ['/login', '/profile', '/', 'login/', '/register/',"/register",'/admin'];
+  const hideLayoutRoutes = ['/login', '/profile', '/c', 'login/', '/register/',"/register",'/admin',"/ms","/auth","/comingSoon"];
 
   return (
     <div>
@@ -35,14 +44,22 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/waitlist" element={<Waitlist />} />
-        <Route path="/a" element={<MainBanner />} />
+        <Route path="/" element={<MainBanner />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/about" element={<About />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/editorial" element={<Editorial />} />
+        <Route path="/feedbacks" element={<Feedbacks />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/school" element={<School />} />
+        <Route path="/comingSoon" element={<ComingSoon />} />
+        <Route path="/feature-school" element={<FeatureSchool />} />
+        <Route path="/school-compare" element={<SchoolCompare />} />
+        <Route path="/school[id]" element={<Schools />} />
+        
         {/* <Route path="/" element={<Auth />} /> */}
         <Route
-          path="/ms"
+          path="/auth"
           element={
             <PublicRoute>
               <Auth />
@@ -56,6 +73,24 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/winner"
+          element={
+            <PrivateRoute>
+              <Winner />
+           
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/raffle"
+          element={
+            <PrivateRoute>
+              <RafflePage  />
+           
             </PrivateRoute>
           }
         />
@@ -92,7 +127,7 @@ function App() {
           }
         />
         <Route
-          path="/"
+          path="/admin"
           element={
             <PublicRoute>
               <Admin />

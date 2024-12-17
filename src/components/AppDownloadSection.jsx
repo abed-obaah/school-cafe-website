@@ -3,10 +3,11 @@ import phone from '../assets/phone.svg';
 import arrow from '../assets/arrow.png';
 import playstore from '../assets/mage_playstore.svg';
 import appstore from '../assets/u_apple.svg';
+import { Link } from 'react-router-dom';
 
 export default function Example() {
   return (
-    <div className="bg-white max-w-7xl mx-auto mb-20">
+    <div className="bg-[#FAFDFF] max-w-7xl mx-auto mb-20">
       <div className="bg-blue-50 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 rounded-md flex flex-col lg:flex-row items-center justify-between">
         
         {/* Text and Buttons Section */}
@@ -15,15 +16,22 @@ export default function Example() {
           <p className="text-gray-700 mb-6 text-2xl">Download App to get Updates on Student & NYSC News</p>
           
           <div className="flex flex-col items-center lg:flex-row lg:justify-start gap-4 mb-6">
-                <button className="bg-black text-white px-8 py-3 rounded-lg flex items-center w-full lg:w-auto justify-center">
+            <Link to={"/comingSoon"}>
+            <button className="bg-black text-white px-8 py-3 rounded-lg flex items-center w-full lg:w-auto justify-center">
                   <img src={playstore} alt="Play Store" className="h-5 mr-2" />
                   Get on Play Store
                 </button>
-                <button className="bg-black text-white px-8 py-3 rounded-lg flex items-center w-full lg:w-auto justify-center">
+             
+             
+            </Link>
+            <Link to={"/comingSoon"}>
+            <button className="bg-black text-white px-8 py-3 rounded-lg flex items-center w-full lg:w-auto justify-center">
                   <img src={appstore} alt="App Store" className="h-5 mr-2" />
                   Get on App Store
                 </button>
-              </div>
+            </Link>
+            
+            </div>
               <p className="text-gray-500 text-center lg:text-left">Join 1M+ School Cafe Subscribers</p>
 
         </div>

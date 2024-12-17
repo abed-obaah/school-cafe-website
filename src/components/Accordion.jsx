@@ -42,7 +42,7 @@ const Accordion = () => {
             <span>{activeIndex === index ? '▲' : '▼'}</span>
           </div>
           {activeIndex === index && (
-            <div className="bg-blue-100 px-4 py-8">
+            <div className="bg-[#EDF7FF] px-4 py-10">
               <p className="text-[#696969]"><strong>Answer: </strong>{faq.answer}</p>
             </div>
           )}

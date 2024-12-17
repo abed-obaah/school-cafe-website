@@ -1,109 +1,276 @@
-do it here 'import delsuLogo from '../../assets/compare1.svg';
-import { FaSearch,FaCaretUp } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import BackgroundImage from '../../assets/contact-us.png'
-import Image from '../../assets/flex.svg'
+import React, { useState, useEffect } from 'react';
+import Confetti from 'react-confetti';
+import { useWindowSize } from 'react-use';
+import axios from 'axios';
 
-import Buttons from '../../components/scrollButtons'
-import Jobs  from '../../components/jobPostings'
-import Courses from "./Courses";
-import Fees from "./Fees";
-import Reviews from "./Reviews";
-import Events from "./Events";
-import News from "./News";
+const LuckyDraw = () => {
+  const [participants, setParticipants] = useState([]);
+  const [winner, setWinner] = useState('');
+  const [rolling, setRolling] = useState(true);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showModal, setShowModal] = useState(true); // Show modal by default
+  const [username, setUsername] = useState(''); // Store username
+  const { width, height } = useWindowSize();
 
-
-const profile = {
-  name: 'Delta State University, Abraka',
-  email: 'ricardo.cooper@example.com',
-  avatar: delsuLogo,
-  backgroundImage:
-  BackgroundImage,
-  fields: [
-    ['Phone', '(555) 123-4567'],
-    ['Email', 'ricardocooper@example.com'],
-    ['Title', 'Senior Front-End Developer'],
-    ['Team', 'Product Development'],
-    ['Location', 'San Francisco'],
-    ['Sits', 'Oasis, 4th floor'],
-    ['Salary', '$145,000'],
-    ['Birthday', 'June 8, 1990'],
-  ],
-};
+  // const participants = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank']; // Example participants
 
 
-export default function Example() {
+  useEffect(() => {
+    const raffleSubmitted = localStorage.getItem('raffleSubmitted');
+    if (raffleSubmitted === 'true') {
+      setShowModal(false); // If already submitted, don't show the modal
+    }
+  }, []);
+
+
+  // useEffect(() => {
+//   const calculateTimeRemaining = () => {
+//     const now = new Date();
+//     const drawEnd = new Date();
+//     drawEnd.setHours(10, 0, 0, 0); // Set the time to 10:00 AM today
+
+//     // If the current time is past 10 AM, set the drawEnd to tomorrow 10 AM
+//     if (now > drawEnd) {
+//       drawEnd.setDate(drawEnd.getDate() + 1);
+//     }
+
+//     const diff = drawEnd - now;
+//     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+//     const minutes = Math.floor((diff / (1000 * 60)) % 60);
+//     const seconds = Math.floor((diff / 1000) % 60);
+
+//     setTimeRemaining(`${hours}h ${minutes}m ${seconds}s`);
+
+//     // Stop rolling and fetch winner when the timer reaches 0
+//     if (diff <= 0) {
+//       setRolling(false);
+//       fetchWinner();
+//     }
+//   };
+
+//   const interval = setInterval(calculateTimeRemaining, 1000);
+//   return () => clearInterval(interval); // Clear interval on component unmount
+// }, []);
+
+
+  useEffect(() => {
+    const fetchParticipants = async () => {
+      try {
+        const response = await axios.get('https://schoolcafe.ng/api/raffle_entries.php');
+        if (response.data.success) {
+          // Map the participant names from the API response
+          const fetchedParticipants = response.data.entries.map(entry => entry.username);
+          setParticipants(fetchedParticipants);
+        } else {
+          alert('Failed to fetch participants. Please try again.');
+        }
+      } catch (error) {
+        alert('An error occurred while fetching participants.');
+      }
+    };
+
+    fetchParticipants();
+  }, []);
+
+  
+
+  useEffect(() => {
+    // Countdown mechanism
+    const interval = setInterval(async () => {
+      const currentTime = new Date();
+      const targetTime = new Date();
+      targetTime.setHours(10, 0, 0, 0); // Set to 10 AM
+
+      if (currentTime >= targetTime) {
+        clearInterval(interval); // Stop the countdown when it's time
+
+        try {
+          // Fetch the winner from the backend
+          const response = await axios.get('https://schoolcafe.ng/api/raffle.php');
+          if (response.data.winner) {
+            setWinner(response.data.winner);
+            setRolling(false);
+            setShowConfetti(true);
+          } else {
+            alert('No winner available or an error occurred.');
+          }
+        } catch (error) {
+          alert('Failed to fetch winner. Please try again later.');
+        }
+      }
+    }, 1000); // Check every second
+
+    return () => clearInterval(interval); // Cleanup interval
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('https://schoolcafe.ng/api/raffle.php', { username });
+      if (response.data.success) {
+        alert('Submission successful! Winner announced at 10 AM.');
+        localStorage.setItem('raffleSubmitted', 'true'); // Save submission status
+        setShowModal(false); // Close the modal
+      } else if (response.data.error === 'Username already submitted') {
+        alert('You have already entered the raffle.');
+        localStorage.setItem('raffleSubmitted', 'true'); // Save submission status
+        setShowModal(false); // Close the modal
+      } else {
+        alert(response.data.error || 'Submission failed. Please try again.');
+      }
+    } catch (error) {
+      alert('An error occurred. Please try again.');
+    }
+  };
+  
+
   return (
-    <div className="relative">
-      <div className="bg-white">
-        <img alt="" src={profile.backgroundImage} className="h-64 w-full object-cover lg:h-96 bg-blue-500" />
-        {/* Floating Search Input with Icon */}
-        <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-full max-w-4xl">
-          <div className="flex items-center border border-gray-300 bg-white rounded-lg shadow-md">
-            <div className="flex items-center p-3">
-              <FaSearch className="h-5 w-5 text-gray-400" aria-hidden="true" />
-            </div>
-            <input
-              type="text"
-              placeholder="Search about school"
-              className="w-full p-3 rounded-lg focus:outline-none"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        <div className="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
-          <div className="flex -ml-4 flex-col"> {/* Flex column added */}
-            <img alt="" src={profile.avatar} className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32" />
-            <h1 className="mt-2 text-xl font-bold text-gray-900">{profile.name}</h1>
-            <div className='flex'>
-                <p className=' text-sm'>Abraka, Delta State, Nigeria. 330105 </p>
-                <span  className='px-1  text-sm'> | </span>
-                <p className=' text-sm'>4.5 Rating</p>
-            </div>
-            
-          </div>
-          <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
-          
-            <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
-              <Link
-                to="/contact"
-                className="mt-4 sm:mt-0 bg-[#1D7BC7] text-white px-8 py-2 rounded"
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        background: 'linear-gradient(to bottom, #ff512f, #dd2476)',
+        color: '#fff',
+        fontFamily: '"Arial", sans-serif',
+        textAlign: 'center',
+        overflow: 'hidden',
+      }}
+    >
+      {showConfetti && <Confetti width={width} height={height} />}
+      
+      {showModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000,
+          }}
+        >
+          <div
+            style={{
+              background: '#fff',
+              padding: '20px',
+              borderRadius: '10px',
+              width: '80%',
+              maxWidth: '400px',
+              textAlign: 'center',
+            }}
+          >
+            <h2 style={{ marginBottom: '20px' }}>Enter Raffle</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your username"
+                required
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  marginBottom: '20px',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  color: '#000',
+                }}
+              />
+              <button
+                type="submit"
+                style={{
+                  background: '#ff512f',
+                  color: '#fff',
+                  border: 'none',
+                  padding: '10px 20px',
+                  borderRadius: '5px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                }}
               >
-               Apply Now
-             </Link>
-            </div>
+                Submit
+              </button>
+            </form>
           </div>
         </div>
+      )}
 
-        <div className="bg-white">
-              <div className="py-24 sm:py-32 -mt-24 -ml-4"> {/* Added negative margin-left */}
-                <h2 className="text-xl font-bold tracking-tight text-[#B3B3B3] sm:text-3xl">
-                Overview
-                </h2>
-                <div className="mt-1.5 flex items-center gap-x-4">
-                <span className="inline-flex items-center rounded-sm bg-gray-400/10 px-2 py-0.5 text-xs font-medium text-gray-400 ring-1 ring-inset ring-gray-400/20">
-                EST. 1997
-                      </span>
-                      <span className="inline-flex items-center rounded-sm bg-gray-400/10 px-2 py-0.5 text-xs font-medium text-gray-400 ring-1 ring-inset ring-gray-400/20">
-                      2 Campuses
-                      </span>
+      <h1
+        style={{
+          fontSize: '3rem',
+          fontWeight: 'bold',
+          color: '#fff700',
+          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+          marginBottom: '20px',
+        }}
+      >
+        Lucky Draw
+      </h1>
+
+      <div
+        style={{
+          width: '80%',
+          maxWidth: '600px',
+          height: '100px',
+          overflow: 'hidden',
+          background: '#fff',
+          borderRadius: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '1.5rem',
+          fontWeight: 'bold',
+          color: '#000',
+          boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
+          border: '8px solid #ffcc00',
+          borderStyle: 'dotted',
+          marginBottom: '30px',
+          position: 'relative',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            animation: rolling ? 'roll 0.3s infinite linear' : 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            transform: rolling ? 'translateY(-100%)' : 'translateY(0)',
+            transition: 'transform 0.5s ease-out',
+          }}
+        >
+          {rolling
+            ? participants.map((name, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    padding: '10px',
+                    margin: '5px 0',
+                  }}
+                >
+                  {name}
                 </div>
-                  <p className='text-[#00172A] font-light'>
-                  Delta State University with the cognomen DELSU is a fast growing University located in Abraka with a lot of attractive tourist sites including the alluring blue coloured River Ethiope acclaimed to be the depest Inland Waterway in Africa. Delta State University with the cognomen DELSU is a fast growing University located in Abraka with a lot of attractive tourist sites including the alluring blue coloured River Ethiope acclaimed to be the depest Inland Waterway in Africa.
-                  </p>
-              </div>
-          </div>
-
-
-
-        <div className="mt-6 hidden min-w-0 flex-1 sm:block md:hidden">
-          <h1 className="truncate text-2xl font-bold text-gray-900">{profile.name}</h1>
+              ))
+            : winner}
         </div>
-        <Buttons/>
-        <Jobs/>
-    
       </div>
+
+      <style>
+        {`
+          @keyframes roll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+          }
+        `}
+      </style>
     </div>
   );
-}'
+};
+
+export default LuckyDraw;

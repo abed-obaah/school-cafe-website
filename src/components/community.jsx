@@ -5,7 +5,7 @@ import {
     GlobeAltIcon,
     ScaleIcon,
   } from '@heroicons/react/24/outline'
-  import community from '../assets/community.svg';
+  // import community from '../assets/community.svg';
   import { Link } from 'react-router-dom';
   
   const transferFeatures = [
@@ -49,6 +49,11 @@ import {
   ]
   
   export default function Example() {
+
+    const handleButtonClick = () => {
+      window.open('https://whatsapp.com/channel/0029Va4mZrK8fewhKYnjU83Y', '_blank');
+    };
+    
     return (
       <div className="overflow-hidden bg-white py-16 lg:py-24 my-10">
         <div className="relative mx-auto max-w-xl px-6 lg:max-w-7xl lg:px-8">
@@ -96,7 +101,7 @@ import {
               </dl> */}
               <div className="mt-0 text-md flex items-center gap-x-6">
                             <div className="py-6">
-                                   <button className="mt-4 sm:mt-0 bg-[#1D7BC7] text-white px-10 py-3.5 rounded">Click Here To Join</button>
+                                   <button     onClick={handleButtonClick} className="mt-4 sm:mt-0 bg-[#1D7BC7] text-white px-10 py-3.5 rounded">Click Here To Join</button>
                           </div>
                 </div>
             </div>
@@ -123,12 +128,12 @@ import {
                 </defs>
                 <rect fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" width={784} height={404} />
               </svg>
-              <img
+              {/* <img
                 alt=""
                 src={community}
                 width={490}
                 className="relative mx-auto"
-              />
+              /> */}
             </div>
           </div>
   

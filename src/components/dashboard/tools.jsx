@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import earning from '../../assets/earning.svg';
 import leader from '../../assets/leader.svg';
 import refer from '../../assets/refer.svg';
@@ -119,13 +119,14 @@ export default function Example({ userData }) {
                       />
                     )}
                   </div>
-
+                  {/* <Link to={"/comingSoon"}> */}
                   <button
                     className="mt-4 w-full flex items-center justify-center rounded-md bg-[#1D7BC7] text-white py-2 hover:bg-blue-700"
                     onClick={() => {
                       if (order.buttonText === 'Check Leaderboard') {
                         navigate('/leaderboard'); // Navigate to /leaderboard
                       } else {
+                        navigate('/comingSoon');
                         console.log(`${order.buttonText} clicked`);
                       }
                     }}
@@ -137,6 +138,7 @@ export default function Example({ userData }) {
                     />
                     <span className="text-sm">{order.buttonText}</span>
                   </button>
+                  {/* </Link> */}
                 </div>
               </div>
             </div>

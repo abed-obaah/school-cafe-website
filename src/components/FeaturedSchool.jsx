@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Card from './cards/index'; 
 import Delsu from '../assets/delsu.png'; // Adjust the path if Card.js is in a different directory
+import { Link } from 'react-router-dom';
 // import AnotherImage from '../assets/anotherImage.png'; // Add other images as needed
 
 const AnotherComponent = () => {
@@ -34,6 +35,36 @@ const AnotherComponent = () => {
       location: 'Los Angeles, CA'
     },
   ];
+  
+
+
+  const scrollContainerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  // Start the dragging
+  const startDrag = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  // Stop the dragging
+  const stopDrag = () => {
+    setIsDragging(false);
+  };
+
+  // Handle the scroll while dragging
+  const dragScroll = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 3; // The multiplier controls the speed of the scroll
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+
 
   return (
     <div className="py-10 px-4 sm:px-6 lg:px-8">
@@ -46,20 +77,33 @@ const AnotherComponent = () => {
           <h2 className="text-black text-2xl font-bold mb-4">Featured Schools</h2>
           <h3 className="text-black">View all</h3> {/* Add text color if needed */}
         </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 mx-auto">
-            {cardDataArray.map((cardData, index) => (
-              <Card
-                key={index}
-                imageSrc={cardData.imageSrc}
-                title={cardData.title}
-                details={cardData.details}
-                featured={cardData.featured}
-                views={cardData.views}
-                rating={cardData.rating}
-                location={cardData.location}
-              />
-            ))}
-          </div>
+        <div
+      ref={scrollContainerRef}
+      className="mt-12 overflow-x-auto overflow-y-hidden flex gap-5 py-4 lg:gap-8 cursor-grab scrollbar-hide lg:justify-center lg:mx-auto"
+      onMouseDown={startDrag}
+      onMouseUp={stopDrag}
+      onMouseLeave={stopDrag}
+      onMouseMove={dragScroll}
+    >
+      {cardDataArray.map((cardData, index) => (
+        <div key={index} className="flex-none w-80 sm:w-96 ">
+          {/* <Link to={"/comingSoon"}> */}
+          <Link to={"/feature-school"}>
+          <Card
+            imageSrc={cardData.imageSrc}
+            title={cardData.title}
+            details={cardData.details}
+            featured={cardData.featured}
+            views={cardData.views}
+            rating={cardData.rating}
+            location={cardData.location}
+          />
+          </Link>
+        
+        </div>
+      ))}
+    </div>
+
         </div>
       </div>
     </div>

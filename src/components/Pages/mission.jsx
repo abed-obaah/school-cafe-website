@@ -6,11 +6,11 @@ export default function Example() {
       <div className="mx-auto max-w-7xl">
         {/* Title and Mission Section */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-          <div className="lg:w-1/2">
+          {/* <div className="lg:w-1/2">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
               OUR <br /> <span className="text-[#1D7BC7]">MISSION</span>
             </h2>
-          </div>
+          </div> */}
 
           <div className="w-full max-w-xl xl:max-w-none xl:flex-auto xl:px-16 xl:py-20">
             <figure className="relative isolate pt-6 sm:pt-12">
@@ -28,9 +28,10 @@ export default function Example() {
               </svg>
               <blockquote className="text-xl font-semibold leading-8 text-white sm:text-2xl sm:leading-9">
                 <p>
-                Our mission is simple: to empower students and NYSC members with valuable, reliable, and timely information. 
-              We aim to be a platform where knowledge, opportunities, and inspiration come together to help students thrive 
-              during their educational journey and beyond.
+                Your Trusted Education Technology Partner
+School Cafe is Nigeria’s leading educational technology platform, serving millions of students annually with verified information, innovative software solutions, and a vibrant academic community.
+
+Through our blog and our main platform, SchoolCafe.ng, we bridge the gap between students and their academic aspirations
                 </p>
               </blockquote>
             </figure>

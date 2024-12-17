@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Bars3Icon, XMarkIcon, ClipboardIcon } from '@heroicons/react/24/outline'
 import Avatar from '../../assets/avatar.svg';
@@ -384,6 +384,8 @@ const UserProfile = () => {
   </span>
 
   {/* Edit Profile Button */}
+             
+  <Link to={"/comingSoon"}>
   <span
     className="inline-flex items-center justify-center rounded-md px-4 py-2 text-xs font-medium text-[#888888] ring-1 ring-inset ring-red-600/10"
   >
@@ -394,6 +396,7 @@ const UserProfile = () => {
     />
     <span>Edit Profile</span>
   </span>
+  </Link>
 </div>
 
 </div>
@@ -512,6 +515,7 @@ const UserProfile = () => {
                                       <h3 className="mt-4 text-sm text-white items-center">
                                         <a href={order.href} className="">{order.status}</a>
                                       </h3>
+                                <Link to={"/comingSoon"}>
                                       <button
                                         className="mt-4 w-full flex items-center justify-center rounded-md bg-[#1D7BC7] text-white py-2 hover:bg-blue-700"
                                         onClick={() => console.log(`${order.buttonText} clicked`)}
@@ -523,6 +527,7 @@ const UserProfile = () => {
                       /> */}
                                         <span className="text-sm">{order.buttonText}</span>
                                       </button>
+                                      </Link>
                                     </div>
                                   </div>
                                 </div>

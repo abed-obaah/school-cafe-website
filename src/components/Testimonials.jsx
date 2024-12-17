@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+
 
 export default function MainComponent() {
   const testimonials = [
@@ -78,6 +79,31 @@ export default function MainComponent() {
     }
   };
 
+  const scrollContainerRef = useRef(null); // Create a ref for the scroll container
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  // Start dragging function
+  const startDrag = (e) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  // Stop dragging function
+  const stopDrag = () => {
+    setIsDragging(false);
+  };
+
+  // Function to handle dragging scroll
+  const dragScroll = (e) => {
+    if (!isDragging) return;
+    const x = e.clientX;
+    const scroll = scrollLeft - (x - startX);
+    scrollContainerRef.current.scrollLeft = scroll;
+  };
+
   return (
     <div className="py-10 px-2 sm:px-2 lg:px-2">
       <div className="flex justify-center">
@@ -90,31 +116,38 @@ export default function MainComponent() {
             </div>
           </div>
           {/* Update the grid layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.author.handle} className="pt-8">
-                <figure className="rounded-2xl bg-gray-50 p-8 text-sm leading-6">
-                  <figcaption className="flex gap-x-2">
-                    <img
-                      alt={testimonial.author.name}
-                      src={testimonial.author.imageUrl}
-                      className="h-12 w-12 rounded-full bg-gray-50"
-                    />
-                    <div>
-                      <div className="font-regular text-[#696969] text-sm">{testimonial.author.name}</div>
-                      <div className="text-[#696969]  text-xs">{`${testimonial.author.handle}`}</div>
-                      <div className={getStatusStyle(testimonial.status)}>
-                        {testimonial.status}
-                      </div>
-                    </div>
-                  </figcaption>
-                  <blockquote className="mt-4 text-gray-900">
-                    <p>{`“${testimonial.body}”`}</p>
-                  </blockquote>
-                </figure>
+          <div
+      ref={scrollContainerRef} // Attach the ref to the container
+      className="mt-12 overflow-x-auto overflow-y-hidden flex gap-8 py-4 cursor-grab scrollbar-hide"
+      onMouseDown={startDrag}
+      onMouseUp={stopDrag}
+      onMouseLeave={stopDrag}
+      onMouseMove={dragScroll}
+    >
+      {testimonials.map((testimonial) => (
+        <div key={testimonial.author.handle} className="flex-none pt-8 w-[400px]"> {/* Increased width */}
+          <figure className="rounded-2xl bg-gray-50 p-8 text-sm leading-6">
+            <figcaption className="flex gap-x-2">
+              <img
+                alt={testimonial.author.name}
+                src={testimonial.author.imageUrl}
+                className="h-12 w-12 rounded-full bg-gray-50"
+              />
+              <div>
+                <div className="font-regular text-[#696969] text-sm">{testimonial.author.name}</div>
+                <div className="text-[#696969]  text-xs">{`${testimonial.author.handle}`}</div>
+                <div className={getStatusStyle(testimonial.status)}>
+                  {testimonial.status}
+                </div>
               </div>
-            ))}
-          </div>
+            </figcaption>
+            <blockquote className="mt-4 text-gray-900">
+              <p>{`“${testimonial.body}”`}</p>
+            </blockquote>
+          </figure>
+        </div>
+      ))}
+    </div>
         </div>
       </div>
     </div>
