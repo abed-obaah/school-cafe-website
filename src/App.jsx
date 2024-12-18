@@ -15,6 +15,7 @@ import SchoolCompare from './components/Pages/compareSchools'
 import Privacy from './components/Pages/privacy';
 import School from './components/Pages/featuredSchoolPage';
 import Schools from './components/Pages/schools';
+import PastQuestion from './components/dashboard/pastQuestion'
 import ComingSoon from './components/Pages/comingSoon';
 import Auth from './components/auth/index';
 import Community from './components/Pages/community/index';
@@ -29,6 +30,7 @@ import Admin from "./components/admin/index"
 import { UserProvider } from './UserContext';
 import PrivateRoute from './PrivateRoute';  // Import the PrivateRoute component
 import PublicRoute from "./PublicRoute";
+import Courses from './components/dashboard/Courses'
 
 function App() {
   const location = useLocation();
@@ -73,6 +75,22 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/pastquestion[id]"
+          element={
+            <PrivateRoute>
+              <PastQuestion />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/courses[id]"
+          element={
+            <PrivateRoute>
+              <Courses />
             </PrivateRoute>
           }
         />

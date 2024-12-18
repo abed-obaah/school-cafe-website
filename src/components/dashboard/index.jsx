@@ -84,7 +84,7 @@ const orders = [
     name1: 'See Your',
     name2: 'Position On',
     name3: 'Leader Board',
-    href: '#',
+    href: '/pastquestion[id]',
     buttonText: 'Buy Now',
     imageSrc: leader,
     data: 'Past Question',
@@ -515,19 +515,18 @@ const UserProfile = () => {
                                       <h3 className="mt-4 text-sm text-white items-center">
                                         <a href={order.href} className="">{order.status}</a>
                                       </h3>
-                                <Link to={"/comingSoon"}>
-                                      <button
-                                        className="mt-4 w-full flex items-center justify-center rounded-md bg-[#1D7BC7] text-white py-2 hover:bg-blue-700"
-                                        onClick={() => console.log(`${order.buttonText} clicked`)}
-                                      >
-                                        {/* <img
-                        src={order.icon}
-                        alt="Button Icon"
-                        className="w-5 h-5 mr-2"
-                      /> */}
-                                        <span className="text-sm">{order.buttonText}</span>
-                                      </button>
-                                      </Link>
+                                {/* <Link to={"/comingSoon"}> */}
+                                <button
+  className="mt-4 w-full flex items-center justify-center rounded-md bg-[#1D7BC7] text-white py-2 hover:bg-blue-700"
+  onClick={() => {
+    console.log(`${order.buttonText} clicked`);
+    window.open(order.href, '_blank');
+  }}
+>
+  <span className="text-sm">{order.buttonText}</span>
+</button>
+
+                                      {/* </Link> */}
                                     </div>
                                   </div>
                                 </div>

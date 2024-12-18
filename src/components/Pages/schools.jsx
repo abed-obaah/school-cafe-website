@@ -6,6 +6,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ArrowLeft } from 'iconsax-react'
 import Logo1 from "../../assets/logo02.svg"
 import Logo2 from "../../assets/logo01.svg"
+import Stats from "./StatsSection"
+import Tables from "./tables"
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -90,18 +92,16 @@ export default function Example() {
             DELTA STATE UNIVERSITY VS UNIVERSITY OF LAGOS
             </h1>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Get started
-              </a>
-              <a href="#" className="text-sm/6 font-semibold text-gray-900">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
+              <Stats />
+             
             </div>
+
+           
           </div>
+
+          
         </div>
+        <Tables />
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
