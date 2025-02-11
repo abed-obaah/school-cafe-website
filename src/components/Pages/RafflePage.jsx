@@ -10,6 +10,8 @@ const LuckyDraw = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showModal, setShowModal] = useState(true); // Show modal by default
   const [username, setUsername] = useState(''); // Store username
+  const [timeRemaining, setTimeRemaining] = useState('');
+
   const { width, height } = useWindowSize();
 
   // const participants = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank']; // Example participants
@@ -132,7 +134,8 @@ const LuckyDraw = () => {
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
-        background: 'linear-gradient(to bottom, #ff512f, #dd2476)',
+        // background: 'linear-gradient(to bottom, #ff512f, #dd2476)',
+        background: '#FAFDFF',
         color: '#fff',
         fontFamily: '"Arial", sans-serif',
         textAlign: 'center',
@@ -206,7 +209,8 @@ const LuckyDraw = () => {
         style={{
           fontSize: '3rem',
           fontWeight: 'bold',
-          color: '#fff700',
+          // color: '#fff700',
+          color: '#1D7BC7',
           textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
           marginBottom: '20px',
         }}
@@ -260,7 +264,7 @@ const LuckyDraw = () => {
             : winner}
         </div>
       </div>
-      <h3 style={{ color: '#fff', fontSize: '1.2rem' }}>Time Remaining: {timeRemaining}</h3>
+      <h3 style={{ color: '#1D7BC7', fontSize: '1.2rem' }}>Time Remaining: {timeRemaining}</h3>
       <style>
         {`
           @keyframes roll {

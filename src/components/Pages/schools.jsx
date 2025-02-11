@@ -8,7 +8,8 @@ import Logo1 from "../../assets/logo02.svg"
 import Logo2 from "../../assets/logo01.svg"
 import Stats from "./StatsSection"
 import Tables from "./tables"
-
+import Share from '../../assets/share-black.svg';
+import ArrowBack from '../../assets/arrowback.svg';
 const navigation = [
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
@@ -39,14 +40,15 @@ export default function Example() {
                 <div className='flex justify-between'>
 
                   <div className='flex items-center'>
-                      <ArrowLeft
-                        size="32"
-                        color="#FF8A65"
-                        />
-                    <p>Go back</p>
+                  <img src={ArrowBack} className='w-6 h-6' />
+                    <p className='ml-5'>Go back</p>
                   </div>
-         
-                    <p>Share</p>
+
+                  <div className='flex items-center'>
+                      <img src={Share} className='w-6 h-6' />
+                      <p className='ml-5'>Share</p>
+                  </div>
+                    
                 </div>
 
 
@@ -61,7 +63,7 @@ export default function Example() {
               clipPath:
                 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
             }}
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#EEF6FC] to-[#EEF6FC] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
@@ -102,33 +104,11 @@ export default function Example() {
           
         </div>
         <Tables />
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        >
-          <div
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-          />
-        </div>
+      
       </div>
        
        </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        >
-           <div
-              style={{
-                clipPath:
-                  'polygon(63.1% 29.5%, 100% 17.1%, 76.6% 3%, 48.4% 0%, 44.6% 4.7%, 54.5% 25.3%, 59.8% 49%, 55.2% 57.8%, 44.4% 57.2%, 27.8% 47.9%, 35.1% 81.5%, 0% 97.7%, 39.2% 100%, 35.2% 81.4%, 97.2% 52.8%, 63.1% 29.5%)',
-              }}
-              className="aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-[#EEF6FC] to-[#EEF6FC] opacity-100 "
-            />
-          </div>
+       
       </div>
     </div>
   )

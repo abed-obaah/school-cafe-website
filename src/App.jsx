@@ -30,7 +30,9 @@ import Admin from "./components/admin/index"
 import { UserProvider } from './UserContext';
 import PrivateRoute from './PrivateRoute';  // Import the PrivateRoute component
 import PublicRoute from "./PublicRoute";
-import Courses from './components/dashboard/Courses'
+import Courses from './components/dashboard/Courses';
+import CourseHistory from './components/dashboard/CourseHistory';
+import CourseDescription from './components/dashboard/courseDescription'
 
 function App() {
   const location = useLocation();
@@ -95,6 +97,22 @@ function App() {
           }
         />
         <Route
+          path="/course-history"
+          element={
+            <PrivateRoute>
+              <CourseHistory />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/Course-description"
+          element={
+            <PrivateRoute>
+              <CourseDescription />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/winner"
           element={
             <PrivateRoute>
@@ -120,14 +138,14 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/community"
           element={
             <PrivateRoute>
               <Community />
             </PrivateRoute>
           }
-        />
+        /> */}
         <Route
           path="/leaderboard"
           element={

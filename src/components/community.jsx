@@ -5,7 +5,7 @@ import {
     GlobeAltIcon,
     ScaleIcon,
   } from '@heroicons/react/24/outline'
-  // import community from '../assets/community.svg';
+  import community from '../assets/com.svg';
   import { Link } from 'react-router-dom';
   
   const transferFeatures = [
@@ -128,12 +128,12 @@ import {
                 </defs>
                 <rect fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" width={784} height={404} />
               </svg>
-              {/* <img
+              <img
                 alt=""
                 src={community}
                 width={490}
                 className="relative mx-auto"
-              /> */}
+              />
             </div>
           </div>
   

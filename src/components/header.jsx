@@ -13,7 +13,7 @@ import {
   PlayCircleIcon,
   ChevronDownIcon,
 } from '@heroicons/react/24/outline'
-import Logo from '../assets/cafe.svg';
+import Logo from '../assets/logov4.png';
 import Avatar from '../assets/avatar.svg';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -28,11 +28,11 @@ const products = [
 ]
 
 const callsToAction = [
-  { name: 'Contact Us', href: '#', icon: PlayCircleIcon },
+  { name: 'Contact Us', href: '/contact', icon: PlayCircleIcon },
 ]
 
 const company = [
-  { name: 'About us', href: 'https://schoolcafe.ng/blog/about-us/', description: 'Learn more about our company values and mission to empower others' },
+  { name: 'About us', href: '/about', description: 'Learn more about our company values and mission to empower others' },
 ]
 
 export default function Example() {

@@ -7,7 +7,8 @@ import { FaSearch, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
 import Typical from 'react-typical';
 import { ArrowLeft } from 'iconsax-react';
-import Cards from './cards'
+import Cards from './cards';
+// import { Link } from 'react-router-dom';
 
 
 // import logo from '../assets/logoBlack.svg'
@@ -48,10 +49,13 @@ export default function Example() {
        
         <div className="relative w-full max-w-7xl mx-auto lg:w-2/8">
   {/* Back to Dashboard */}
-  <div className="flex items-center mb-20" style={{ paddingLeft: '0' }}>
-    <ArrowLeft color='#B3B3B3' />
-    <h3 className="ml-2 text-[#B3B3B3]">Back to Dashboard</h3>
-  </div>
+  <Link to={'/dashboard'}>
+  {/* Back to Dashboard */}
+            <div className="flex items-center" style={{ paddingLeft: '0' }}>
+                <ArrowLeft color='#B3B3B3' />
+                <h3 className="ml-2 text-[#B3B3B3]">Back to Dashboard</h3>
+            </div>
+            </Link>
 
   {/* Search Input */}
   <div className="relative">

@@ -47,10 +47,10 @@ const handleNext = () => {
 };
   return (
     <div className="flex justify-center -mt-10">
-      <div className="relative w-full max-w-7xl lg:w-2/8">
+      <div className="relative w-full  lg:w-2/8">
         <div className="container mx-auto py-10">
           {/* Search Bar */}
-          <div className="relative w-full max-w-7xl lg:w-2/8 -mt-10 mb-10">
+          <div className="relative w-full lg:w-2/8 -mt-10 mb-10">
             <input
               type="text"
               placeholder="Search For Student, University, JAMB, WAEC, NYSC info"
@@ -77,33 +77,34 @@ const handleNext = () => {
 
           {/* Courses List */}
           <ul role="list" className="space-y-3 mt-4">
-            {courses.map((course) => (
-              <li
-                key={course.id}
-                className="overflow-hidden rounded-md bg-white px-6 py-4 border"
-              >
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">{course.name}</p>
-                  </div>
-                  <div>
-                    <span
-                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full`}
-                      style={{
-                        backgroundColor: colorMap[course.color].bg,
-                        color: colorMap[course.color].text,
-                      }}
-                    >
-                      {course.faculty}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">{course.years}</p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+  {courses.map((course) => (
+    <li
+      key={course.id}
+      className="overflow-hidden rounded-md bg-white px-6 py-4 border"
+    >
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <p className="text-sm font-medium text-gray-900">{course.name}</p>
+        </div>
+        <div className="ml-auto">
+          <span
+            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full`}
+            style={{
+              backgroundColor: colorMap[course.color].bg,
+              color: colorMap[course.color].text,
+            }}
+          >
+            {course.faculty}
+          </span>
+        </div>
+        <div>
+          <p className="text-sm text-gray-500">{course.years}</p>
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>
+
 
         {/* Pagination */}
         <nav className="flex items-center justify-between  border-gray-200 px-4 sm:px-0 mt-10">
